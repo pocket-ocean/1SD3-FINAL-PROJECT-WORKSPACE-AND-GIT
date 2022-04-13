@@ -80,9 +80,7 @@ export const playerData = {
 
 
 
-function DetailPlayer(props) {
-
-  if(props.authorized){
+function DetailPlayer() {
   return (
     <div>
 
@@ -116,19 +114,6 @@ function DetailPlayer(props) {
           options={{ responsive: false }}  />
       </div>
     </div>
-
-} else { return (
-
-<div>Press show player statistics!</div>
-
-
- <button onClick={() => setEmotion("frustrated")}>Frustrate</button>
-
-
-
-) }
-
-
   );
 }
 
