@@ -95,7 +95,7 @@ function DetailPlayer() {
       </div>
 
       <div>   
-        <h1>Accessing Player Match Statistics, Line Graph</h1>
+        <h1>Accessing Player Object Match Statistics, Line Graph</h1>
         <Line
           data={state}
           options={{
