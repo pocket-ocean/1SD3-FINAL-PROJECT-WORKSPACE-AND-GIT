@@ -9,9 +9,11 @@ import {
   LinearScale,
   PointElement,
   LineElement,
-  Title,
+  Title,  Filler
 } from "chart.js";
+
 import { Pie, Line  } from "react-chartjs-2";
+
 
 ChartJS.register(
   ArcElement,
@@ -23,54 +25,42 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler // 1. Register Filler plugin
 );
 
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' as const,
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
-};
-
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const Linedata = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
 
 export const playerStats = {
   goals: 20,
   attempts: 100,
 
-  matches: [
-    (match1 = { goals: 1 }),
-    (match2 = { goals: 4 }),
-    (match3 = { goals: 2 }),
-    (match4 = { goals: 0 }),
-  ],
+  matchGoals: [ 2,3,4,0,]
+  
 };
+
+
+
+const state = {
+  labels: ['M1', 'M2', 'M3',
+           'M4', ],
+  datasets: [
+    {
+      label: 'Goals Per Match',
+      fill: false,
+      lineTension: 0.5,
+      backgroundColor: 'rgba(75,192,192,1)',
+      borderColor: 'rgba(0,0,0,1)',
+      borderWidth: 2,
+      data: [playerStats.matchGoals[0], playerStats.matchGoals[1],  playerStats.matchGoals[2],  playerStats.matchGoals[3]]
+    }
+  ]
+}
+
+
+
+
+
 
 export const playerData = {
   labels: ["goals", "attempts"],
@@ -86,46 +76,16 @@ export const playerData = {
   ],
 };
 
-export const data = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        "rgba(255, 159, 64, 0.2)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
 
-// <h1>Test Chart.js Default pie!</h1>
-{
-  /* <Pie
-data={data}
-height="200px"
-width="200px"
-options={{ responsive: false }}
-/> */
-}
 
-function DetailPlayer() {
+
+
+function DetailPlayer(props) {
+
+  if(props.authorized){
   return (
     <div>
+
       <div>
         <h1>Accessing Player Object Pie!</h1>
         <Pie
@@ -136,11 +96,39 @@ function DetailPlayer() {
         />
       </div>
 
-      <div>
-        <h1>Accessing Player Match Statistics</h1>
-        <Line options={options} data={Linedata} />
+      <div>   
+        <h1>Accessing Player Match Statistics, Line Graph</h1>
+        <Line
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+          height="200px"
+          width="200px"
+          options={{ responsive: false }}  />
       </div>
     </div>
+
+} else { return (
+
+<div>Press show player statistics!</div>
+
+
+ <button onClick={() => setEmotion("frustrated")}>Frustrate</button>
+
+
+
+) }
+
+
   );
 }
 
