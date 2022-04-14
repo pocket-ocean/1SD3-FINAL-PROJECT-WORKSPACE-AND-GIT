@@ -31,43 +31,58 @@ ChartJS.register(
 
 
 
-export const playerStats = {
-  goals: 20,
-  attempts: 100,
 
-  matchGoals: [ 2,3,4,0,]
-  
+
+export const Player = {
+
+  player_name: "Brian O'Brien",
+  player_dob: "08/06/1992",
+  player_team: "Galway Lions",
+  player_goals = [2,3,4,0],
+  player_goal_attempts = [22, 44, 32, 11],
+  player_passes = [10, 14, 16, 8],
+  player_pass_attempts [15, 17, 19, 12],
+
+  totalgoals: player_goals.reduce((a, b) => a + b, 0),
+  totalgoalattempts: player_goal_attempts.reduce((a, b) => a + b, 0),
+
+  totalpasses: player_passes.reduce((a, b) => a + b, 0),
+  totalpassattempts: player_pass_attempts.reduce((a, b) => a + b, 0),
+
 };
 
 
 
-const state = {
-  labels: ['M1', 'M2', 'M3',
-           'M4', ],
+
+
+
+const lineData = {
+  labels: ["M1", "M2", "M3", "M4",],
   datasets: [
     {
-      label: 'Goals Per Match',
+      label: "Goals Per Match",
+      data: [Player.player_goals[0], Player.player_goals[1],  Player.player_goals[2], Player.player_goals[3]],
+      fill: true,
+      backgroundColor: "rgba(75,192,192,0.2)",
+      borderColor: "rgba(75,192,192,1)"
+    },
+    {
+      label: "Goal Attempts Per Match",
+      data: [Player.player_goal_attempts[0], Player.player_goal_attempts[1],  Player.player_goal_attempts[2], Player.player_goal_attempts[3]],
       fill: false,
-      lineTension: 0.5,
-      backgroundColor: 'rgba(75,192,192,1)',
-      borderColor: 'rgba(0,0,0,1)',
-      borderWidth: 2,
-      data: [playerStats.matchGoals[0], playerStats.matchGoals[1],  playerStats.matchGoals[2],  playerStats.matchGoals[3]]
+      borderColor: "#742774"
     }
   ]
-}
+};
 
 
 
-
-
-
-export const playerData = {
+export const PieData = {
   labels: ["goals", "attempts"],
   datasets: [
     {
       label: "testPlayer",
-      data: [playerStats.goals, playerStats.attempts],
+      data: [Player.totalgoals, Player.totalgoalattempts],
       backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
       borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
 
@@ -86,8 +101,9 @@ function DetailPlayer() {
 
       <div>
         <h1>Accessing Player Object Pie!</h1>
+        <h3>{Player.player_name}'s Statistics</h3>
         <Pie
-          data={playerData}
+          data={PieData}
           height="200px"
           width="200px"
           options={{ responsive: false }}
@@ -95,13 +111,13 @@ function DetailPlayer() {
       </div>
 
       <div>   
-        <h1>Accessing Player Object Match Statistics, Line Graph</h1>
+        <h1>Accessing Player Goal and Goal Attempts LINE GRAPH</h1>
         <Line
-          data={state}
+          data={lineData}
           options={{
             title:{
               display:true,
-              text:'Average Rainfall per month',
+              text:'Player Goals and Attempts',
               fontSize:20
             },
             legend:{
