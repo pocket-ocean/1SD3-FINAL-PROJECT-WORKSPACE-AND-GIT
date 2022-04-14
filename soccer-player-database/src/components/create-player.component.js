@@ -1,21 +1,55 @@
 import React, { Component } from 'react';
 
+
+
+// let Player = new Schema({
+//     player_name: {
+//         type: String
+//     },
+//     player_team: {
+//         type: String
+//     },
+//     player_dob: {
+//         type: Date
+//     },
+//     player_goals: {
+//         type: Array,
+//     }
+//     player_goal_attempts: {
+//         type: Array
+//     }
+
+//     player_passes: {
+//         type: Array
+//     }
+//     player_pass_attempts: {
+//         type: Array
+//     }
+
+
+
 export default class CreatePlayer extends Component {
 
     constructor(props) {
         super(props);
 
-        this.onChangePlayerName = this.onChangePlayerName.bind(this);
-        this.onChangePlayerNationality = this.onChangePlayerNationality.bind(this);
-
+   
 
 
         this.state = {
             player_name: "",
             
-            player_nationality: '',
+            player_team:'',
 
-            
+            player_dob:'',
+
+            player_goals: [],
+
+            player_goal_attempts: [],
+
+            player_passes: [],
+
+            player_pass_attempts: []
            
         }
     }
@@ -26,11 +60,28 @@ export default class CreatePlayer extends Component {
         });
       }
 
-    onChangePlayerNationality(e) {
+      onChangePlayerTeam(e) {
         this.setState({
-            player_nationality: e.target.value
+          player_team: e.target.value,
         });
-    }
+      }
+
+      onChangePlayerTeam(e) {
+        this.setState({
+          player_dob: e.target.value,
+        });
+      }
+
+      onChangePlayer_goals(e){
+      }
+
+      onChangePlayer_goal_attempts(e){}
+
+      onChangePlayer_passes(e){}
+
+      onChangePlayer_pass_attempts(e){}
+
+
 
 
     onSubmit(e) {
@@ -38,13 +89,24 @@ export default class CreatePlayer extends Component {
         
         console.log(`Player Created:`);
         console.log(`Player Name: ${this.state.player_name}`);
-        console.log(`Player Nationality: ${this.state.player_nationality}`);
+        console.log(`Player Team: ${this.state.player_team}`);
+        console.log(`Player Dob: ${this.state.player_dob}`);
   
         
         this.setState({
-            player_name: '',
-            todo_responsible: '',
-     
+            player_name: "",
+            
+            player_team:'',
+
+            player_dob:'',
+
+            player_goals: [],
+
+            player_goal_attempts: [],
+
+            player_passes: [],
+
+            player_pass_attempts: []
         })
     }
 
@@ -62,12 +124,14 @@ export default class CreatePlayer extends Component {
                                 />
                     </div>
                     <div className="form-group">
-                        <label>Player Nationality: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.player_nationality}
-                                onChange={this.onChangePlayerNationality}
-                                />
+                    <label for="cars">Choose a car:</label>
+  <select id="cars" name="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat" selected>Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
+  <input type="submit">
                     </div>
 
                     <div className="form-group">
