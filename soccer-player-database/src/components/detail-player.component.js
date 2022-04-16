@@ -219,6 +219,37 @@ const PassLineData = {
   ],
 };
 
+
+//GoalTrendConditionalCheck
+
+function GoalTrendConditionalCheck ()
+{
+
+  return (
+
+    <li>This will assess sucessful goals over time, they are either increasing or decreasing, and if the player's attempted goals are trending up or down over time. </li>
+
+    )
+
+};
+
+
+//PassTrendConditionalCheck
+
+
+function PassTrendConditionalCheck(){
+
+  return (
+
+    <li>This will assess sucessful passes over time, they are either increasing or decreasing, and if the player's attempted passess are trending up or down over time. </li>
+
+    )
+
+};
+
+
+// What is shown to the user! 
+
 function DetailPlayer() {
   return (
     <div>
@@ -323,12 +354,16 @@ function DetailPlayer() {
           <div className="col-sm-4">
             <h3>Passing Breakdown</h3>
             
-            <ul>
+            <ul>  
 
-                <li>
-                  This player's goal success rate is:
-                </li>
+            <GoalTrendConditionalCheck/>
 
+                <br></br>
+            <PassTrendConditionalCheck/>
+
+                <br></br>
+
+                
 
 
             </ul>
