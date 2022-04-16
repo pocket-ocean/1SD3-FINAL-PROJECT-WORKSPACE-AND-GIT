@@ -39,7 +39,7 @@ const playerObject1 = {
   player_position: "Striker",
 
   goals: [2, 1, 0, 4],
-  goalAttempts: [10, 34, 4, 12],
+  goalAttempts: [5, 6, 3, 9],
   passes: [10, 28, 15, 13],
   passAttempts: [30, 29, 20, 15],
 };
@@ -60,7 +60,9 @@ console.log("Goal Attempts:" + goalAttemptsTotal);
 
 //getting a goal percentage:
 
-var goalPercentage = Math.floor((goalTotal / (goalAttemptsTotal + goalTotal)) * 100);
+var goalPercentage = Math.floor(
+  (goalTotal / (goalAttemptsTotal + goalTotal)) * 100
+);
 
 //tallying passes
 
@@ -80,7 +82,9 @@ console.log("Pass Attempts:" + passAttemptsTotal);
 
 //getting a pass percentage:
 
-var passPercentage = Math.floor((passTotal / (passAttemptsTotal + passTotal)) * 100);
+var passPercentage = Math.floor(
+  (passTotal / (passAttemptsTotal + passTotal)) * 100
+);
 
 //Generating GoalPie Data
 
@@ -120,62 +124,100 @@ var overallGoalAverage = 25;
 
 var overallPassAverage = 35;
 
-
 //Conditional Rendering
-function  GoalConditionalCheck(){
-
-if(goalPercentage > overallGoalAverage) {
-return(
-
-<li>This is better than the average of <b> {overallGoalAverage}%.</b></li>
-
-)}
-
-else if (goalPercentage == overallGoalAverage) {
-
-  return(
-
-    <li>This is the goal success average.</li>
-    
-    )
-  
+function GoalConditionalCheck() {
+  if (goalPercentage > overallGoalAverage) {
+    return (
+      <li>
+        This is better than the average of <b> {overallGoalAverage}%.</b>
+      </li>
+    );
+  } else if (goalPercentage == overallGoalAverage) {
+    return <li>This is the goal success average.</li>;
+  } else
+    return (
+      <li>
+        This is worse than the average of <b> {overallGoalAverage}%.</b>
+      </li>
+    );
 }
 
-else return (
+function PassConditionalCheck() {
+  if (passPercentage > overallPassAverage) {
+    return (
+      <li>
+        This is better than the average of <b> {overallPassAverage}%.</b>
+      </li>
+    );
+  } else if (passPercentage == overallPassAverage) {
+    return <li>This is the pass success average.</li>;
+  } else
+    return (
+      <li>
+        This is worse than the average of <b> {overallPassAverage}%.</b>
+      </li>
+    );
+}
 
-<li>This is worse than the average of <b> {overallGoalAverage}%.</b></li>
-)
+//Line chart data
 
+const GoalLineData = {
+  labels: ["M1", "M2", "M3", "M4"],
+  datasets: [
+    {
+      label: "Goals",
+      data: [
+        playerObject1.goals[0],
+        playerObject1.goals[1],
+        playerObject1.goals[2],
+        playerObject1.goals[3],
+      ],
+      fill: true,
+      backgroundColor: "rgba(75,192,192,0.2)",
+      borderColor: "#B21F00",
+    },
+    {
+      label: "Attempted Goals",
+      data: [
+        playerObject1.goalAttempts[0],
+        playerObject1.goalAttempts[1],
+        playerObject1.goalAttempts[2],
+        playerObject1.goalAttempts[3],
+      ],
+      fill: false,
+      borderColor: "#C9DE00",
+    },
+  ],
 };
 
-function  PassConditionalCheck(){
-
-  if(passPercentage > overallPassAverage) {
-  return(
-  
-  <li>This is better than the average of <b> {overallPassAverage}%.</b></li>
-  
-  )}
-
-  else if (passPercentage == overallPassAverage) {
-
-    return(
-  
-      <li>This is the pass success average.</li>
-      
-      )
-    
-  }
-  
-  else return (
-  
-  <li>This is worse than the average of <b> {overallPassAverage}%.</b></li>
-  )
-  
-  };
-
-
-
+const PassLineData = {
+  labels: ["M1", "M2", "M3", "M4"],
+  datasets: [
+    {
+      label: "Passes",
+      data: [
+        playerObject1.passes[0],
+        playerObject1.passes[1],
+        playerObject1.passes[2],
+        playerObject1.passes[3],
+      ],
+      fill: true,
+      backgroundColor: "rgba(75,192,192,0.2)",
+      borderColor: "rgb(255, 99, 132)",
+    },
+    {
+      label: "Attempted Passes",
+      data: [
+        playerObject1.passAttempts[0],
+        playerObject1.passAttempts[1],
+        playerObject1.passAttempts[2],
+        playerObject1.passAttempts[3],
+      ],
+      fill: false,
+      borderColor:"rgb(54, 162, 235)",
+    },
+  ],
+};
 
 function DetailPlayer() {
   return (
@@ -246,7 +288,7 @@ function DetailPlayer() {
                 attempts.
               </li>
               <br></br>
-              <GoalConditionalCheck/>
+              <GoalConditionalCheck />
 
               <br></br>
 
@@ -256,14 +298,46 @@ function DetailPlayer() {
               </li>
 
               <br></br>
-              <PassConditionalCheck/>
+              <PassConditionalCheck />
 
               <br></br>
-
             </ul>
           </div>
         </div>
       </div>
+
+      <br></br>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-4">
+            <h3>Goals and Attempts Over Time</h3>
+            <Line data={GoalLineData} />
+          </div>
+
+          <div className="col-sm-4">
+            <h3>Passes and Attempts Over Time</h3>
+            <Line data={PassLineData} />
+          </div>
+
+          <div className="col-sm-4">
+            <h3>Passing Breakdown</h3>
+            
+            <ul>
+
+                <li>
+                  This player's goal success rate is:
+                </li>
+
+
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      
     </div>
   );
 }
