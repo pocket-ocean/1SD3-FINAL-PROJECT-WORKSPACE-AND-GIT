@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CreatePlayer from "./components/create-player.component";
 import EditPlayer from "./components/edit-player.component";
 import PlayersList from "./components/players-list.component";
-import DetailPlayer from "./components/detail-player.component";
+import SampleDetailPlayer from "./components/detail-player.component";
 
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
                   <Link to="/create" className="nav-link">Create Player</Link>
                 </li>
                 <li className="navbar-item">
-                  <Link to="/chart" className="nav-link">TEMP CHART VIS PRACTICE LINK</Link>
+                  <Link to="/chart" className="nav-link">Sample Player Datavisualization</Link>
                 </li>
               </ul>
             </div>
@@ -36,7 +36,7 @@ class App extends Component {
           <Route path="/" element={<PlayersList/>}/>
           <Route path="/create" element={<CreatePlayer/>} />
           <Route path="/edit/:id" element={<EditPlayer/>} />
-          <Route path="/chart/" element={<DetailPlayer/>} />
+          <Route path="/chart/" element={<SampleDetailPlayer/>} />
          
           </Routes>
         </div>
