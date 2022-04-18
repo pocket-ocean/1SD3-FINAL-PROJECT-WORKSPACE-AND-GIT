@@ -48,10 +48,18 @@ export default class CreatePlayer extends Component {
                    this.onChangePlayerName = this.onChangePlayerName.bind(this);
                    this.onChangePlayerTeam = this.onChangePlayerTeam.bind(this);
                    this.onChangePlayerDob = this.onChangePlayerDob.bind(this);
+
                    this.onChangePlayerGoals = this.onChangePlayerGoals.bind(
                      this
                    );
                    this.onChangePlayerGoalAttempts = this.onChangePlayerGoalAttempts.bind(
+                     this
+                   );
+                   this.onChangePlayerPasses = this.onChangePlayerPasses.bind(
+                     this
+                   );
+
+                   this.onChangePlayerPassAttempts = this.onChangePlayerPassAttempts.bind(
                      this
                    );
 
@@ -88,19 +96,25 @@ export default class CreatePlayer extends Component {
 
                  onChangePlayerGoalAttempts(e) {
 
-                  this.setState({
+                  
+                   this.setState({
+                     player_goal_attempts: e.target.value,
 
-                    player_goal_attempts: e.target.value,
-
-
-                  });
-
-
+                    
+                   });
                  }
 
-                 onChangePlayer_passes(e) {}
+                 onChangePlayerPasses(e) {
+                   this.setState({
+                     player_passes: e.target.value,
+                   });
+                 }
 
-                 onChangePlayer_pass_attempts(e) {}
+                 onChangePlayerPassAttempts(e) {
+                   this.setState({
+                     player_pass_attempts: e.target.value,
+                   });
+                 }
 
                  onSubmit(e) {
                    e.preventDefault();
@@ -110,7 +124,11 @@ export default class CreatePlayer extends Component {
                    console.log(`Player Team: ${this.state.player_team}`);
                    console.log(`Player Dob: ${this.state.player_dob}`);
                    console.log(`Player Goals: ${this.state.player_goals}`);
-                   console.log(`Player Goals: ${this.state.player_goal_attempts}`);
+                   console.log(
+                     `Player Goal Attempts: ${this.state.player_goal_attempts}`
+                   );
+                   console.log(`Player Passes: ${this.state.player_passes}`);
+                   console.log(`Player Pass Attempts: ${this.state.player_pass_attempts}`);
 
                    this.setState({
                      player_name: "",
@@ -196,18 +214,28 @@ export default class CreatePlayer extends Component {
                          <br></br>
                          <p>
                            All Goal Attempts:{" "}
-                           <input type="text" name="array[]" value={this.state.player_goal_attempts}
-                             onChange={this.onChangePlayerGoalAttempts} />
+                           <input
+                             type="text"
+                             name="array[]"
+                             value={this.state.player_goal_attempts}
+                             onChange={this.onChangePlayerGoalAttempts}
+                           />
                          </p>
                          <br></br>
                          <p>
                            Sucessful Passes:{" "}
-                           <input type="number" name="array[]" value="" />
+                           <input
+                             type="text"
+                             name="array[]"
+                             value={this.state.player_passes}
+                             onChange={this.onChangePlayerPasses}
+                           />
                          </p>
                          <br></br>
                          <p>
                            All Pass Attempts:{" "}
-                           <input type="number" name="array[]" value="" />
+                           <input type="text" name="array[]" value={this.state.player_pass_attempts}
+                             onChange={this.onChangePlayerPassAttempts}/>
                          </p>{" "}
                          <br></br>
                          <div className="form-group">
