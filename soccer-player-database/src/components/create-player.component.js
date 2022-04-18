@@ -35,13 +35,13 @@ export default class CreatePlayer extends Component {
 
                      player_dob: "",
 
-                     player_goals: [],
+                     player_goals: "",
 
-                     player_goal_attempts: [],
+                     player_goal_attempts: "",
 
-                     player_passes: [],
+                     player_passes: "",
 
-                     player_pass_attempts: [],
+                     player_pass_attempts: "",
                    };
 
                    //bindings

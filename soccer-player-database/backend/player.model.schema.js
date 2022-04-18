@@ -1,10 +1,5 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const cors = require('cors');
 const mongoose = require('mongoose');
-const todoRoutes = express.Router();
-const PORT = 4000;
+const Schema = mongoose.Schema;
 
 //each index in the array corresponds to the same match, eg index 0 is for Match 1, index 1 is for Match 2, and so on
 
@@ -16,21 +11,25 @@ let Player = new Schema({
     player_team: {
         type: String
     },
+
+    player_position: {
+        type: String
+    },
     player_dob: {
         type: Date
     },
     player_goals: {
-        type: Array,
+        type: String,
     }
     player_goal_attempts: {
-        type: Array
+        type: String
     }
 
     player_passes: {
-        type: Array
+        type: String
     }
     player_pass_attempts: {
-        type: Array
+        type: String
     }
 });
 
