@@ -41,9 +41,9 @@ const playerObject3 = {
 function PlayersList() {
   return (
     <div>
-      <p>Welcome to Players List Component!!</p>
+      <p>Welcome to Players List Component!! (hardcoded)</p>
 
-
+      
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
@@ -79,6 +79,32 @@ function PlayersList() {
           </tr>
         </tbody>
       </table>
+
+    <div>
+      <p>Welcome to Players List Component! Pulling from MongoDB)</p>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
   );
