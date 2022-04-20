@@ -92,7 +92,7 @@ for (let i = 0; i < playerObject1.matches.length; i++){
   console.log(playerObject1.matches[i].goals)
 
 
-
+}
 
 //Summing this Array of Goals
 
