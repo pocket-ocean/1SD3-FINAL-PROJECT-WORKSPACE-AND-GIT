@@ -142,7 +142,7 @@ axios.post('http://localhost:4000/players/add', newPlayer)
           </div>
 
           <div className="form-group">
-            <label for="player_position">Player Position:</label>
+            <label for="player_position">Player Dob:</label>
             <input
               type="date"
               id="player_dob"
