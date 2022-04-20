@@ -44,6 +44,8 @@ const playerObject1 = {
   passAttempts: [30, 29, 20, 15],
 };
 
+
+
 //tallying goals
 var goalTotal = 0;
 for (let h = 0; h < playerObject1.goals.length; h++) {
@@ -252,7 +254,7 @@ function PassTrendConditionalCheck(){
 
 // What is shown to the user! 
 
-function DetailPlayer() {
+function SampleDetailPlayer() {
   return (
     <div>
       <h3>This is a Player Data Vis Example</h3>
@@ -284,7 +286,7 @@ function DetailPlayer() {
               options={{
                 title: {
                   display: true,
-                  text: "Average Rainfall",
+                  text: "Goals and Attempts",
                   fontSize: 20,
                 },
                 legend: {
@@ -295,23 +297,14 @@ function DetailPlayer() {
             />
           </div>
 
-          <div className="col-sm -4">
-            <h3>Total Passes and Pass Attempts</h3>
-            <Pie
-              data={PassPieData}
-              options={{
-                title: {
-                  display: true,
-                  text: "Average Rainfall",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: true,
-                  position: "right",
-                },
-              }}
-            />
+          
+          <div className="col-sm-4">
+            <h3>Goals and Attempts Over Time</h3>
+            <Line data={GoalLineData} />
           </div>
+
+
+
 
           <div className="col-sm-4">
             <h3>Goal Breakdown</h3>
@@ -342,11 +335,30 @@ function DetailPlayer() {
       <br></br>
 
       <div className="container">
+      
         <div className="row">
-          <div className="col-sm-4">
-            <h3>Goals and Attempts Over Time</h3>
-            <Line data={GoalLineData} />
+        <div className="col-sm-4">
+            <h3>Total Passes and Pass Attempts</h3>
+            <Pie
+              data={PassPieData}
+              options={{
+                title: {
+                  display: true,
+                  text: "Average Rainfall",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+              }}
+         
+
+
+            />
           </div>
+
+          
 
           <div className="col-sm-4">
             <h3>Passes and Attempts Over Time</h3>
@@ -379,4 +391,4 @@ function DetailPlayer() {
   );
 }
 
-export default DetailPlayer;
+export default SampleDetailPlayer;
