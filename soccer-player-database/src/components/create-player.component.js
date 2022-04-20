@@ -2,136 +2,145 @@ import React, { Component } from "react";
 
 
 export default class CreatePlayer extends Component {
-                 constructor(props) {
-                   super(props);
+  constructor(props) {
+    super(props);
 
-                   this.state = {
-                     player_name: "",
+    this.state = {
+      player_name: "",
 
-                     player_team: "",
+      player_team: "",
 
-                     player_postition: "",
+      player_dob: "",
 
-                     player_dob: "",
+      player_position: "",
 
-                     matches: [],
-                   };
+      matches: [],
+    };
 
-                   //bindings
-                   this.onChangePlayerName = this.onChangePlayerName.bind(this);
-                   this.onChangePlayerTeam = this.onChangePlayerTeam.bind(this);
-                   this.onChangePlayerDob = this.onChangePlayerDob.bind(this);
-                   this.onChangePlayerPosition = this.onChangePlayerPosition(
-                     this
-                   );
+    //bindings
+    this.onChangePlayerName = this.onChangePlayerName.bind(this);
+    this.onChangePlayerTeam = this.onChangePlayerTeam.bind(this);
+    this.onChangePlayerPosition = this.onChangePlayerPosition.bind(this);
+    this.onChangePlayerDob = this.onChangePlayerDob.bind(this);
 
-                   this.onSubmit = this.onSubmit.bind(this);
-                 }
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
-                 onChangePlayerName(e) {
-                   this.setState({
-                     player_name: e.target.value,
-                   });
-                 }
+  //methods for updating the state properties
 
-                 onChangePlayerTeam(e) {
-                   this.setState({
-                     player_team: e.target.value,
-                   });
-                 }
+  onChangePlayerName(e) {
+    this.setState({
+      player_name: e.target.value,
+    });
+  }
 
-                 onChangePlayerDob(e) {
-                   this.setState({
-                     player_dob: e.target.value,
-                   });
-                 }
+  onChangePlayerTeam(e) {
+    this.setState({
+      player_team: e.target.value,
+    });
+  }
 
-                 onChangePlayerPosition(e) {
-                   this.setState({
-                     player_position: e.target.value,
-                   });
-                 }
+  onChangePlayerDob(e) {
+    this.setState({
+      player_dob: e.target.value,
+    });
+  }
 
-                 onSubmit(e) {
-                   e.preventDefault();
+  onChangePlayerPosition(e) {
+    this.setState({
+      player_position: e.target.value,
+    });
+  }
 
-                   console.log(`Player Created:`);
-                   console.log(`Player Name: ${this.state.player_name}`);
-                   console.log(`Player Team: ${this.state.player_team}`);
-                   console.log(`Player Dob: ${this.state.player_dob}`);
-                   console.log(`Player Goals: ${this.state.player_position}`);
+  //Submit event handler that will log results and set the state to empty again
+  onSubmit(e) {
+    e.preventDefault();
 
-                   this.setState({
-                     player_name: "",
+    console.log(`Player Created:`);
+    console.log(`Player Name: ${this.state.player_name}`);
+    console.log(`Player Team: ${this.state.player_team}`);
+    console.log(`Player Position: ${this.state.player_position}`);
+    console.log(`Player Dob: ${this.state.player_dob}`);
+    console.log(
+      `Empty match array created of length: ${this.state.matches.length}`
+    );
 
-                     player_team: "",
+    this.setState({
+      player_name: "",
 
-                     player_dob: "",
+      player_team: "",
 
-                     player_position: "",
+      player_dob: "",
 
-                     matches: [],
-                   });
-                 }
+      player_position: "",
 
-                 render() {
-                   return (
-                     <div style={{ marginTop: 10 }}>
-                       <h3>Create New Player</h3>
-                       <form onSubmit={this.onSubmit}>
-                         <div className="form-group">
-                           <label>Player Name: </label>
-                           <input
-                             type="text"
-                             className="form-control"
-                             value={this.state.player_name}
-                             onChange={this.onChangePlayerName}
-                           />
-                         </div>
-                         <br></br>
-                         <div className="form-group">
-                           <label for="Teams">Player Team:</label>
-                           <select
-                             id="teams"
-                             name="teams"
-                             onChange={this.onChangePlayerTeam}
-                           >
-                             <option value="Galway Lions">Galway Lions</option>
-                             <option value="Leitrim Larks">
-                               Leitrim Larks
-                             </option>
-                             <option value="Mayo Mongeese">
-                               Mayo Mongeese
-                             </option>
-                             <option value="Sligo Skylarks">
-                               Sligo Skylarks
-                             </option>
-                             <option value="Roscommon Bears">
-                               Roscommon Bears
-                             </option>
-                           </select>
-                         </div>
-                         <br></br>
-                         <label for="start">Player Birthdate:</label>
-                         <input
-                           type="date"
-                           id="start"
-                           name="trip-start"
-                           value={this.state.player_dob}
-                           onChange={this.onChangePlayerDob}
-                         />
+      matches: [],
+    });
+  }
 
-                         
-                         <br></br>
-                         <div className="form-group">
-                           <input
-                             type="submit"
-                             value="Create Player"
-                             className="btn btn-primary"
-                           />
-                         </div>
-                       </form>
-                     </div>
-                   );
-                 }
-               }
+  render() {
+    return (
+      <div style={{ marginTop: 10 }}>
+        <h3>Create New Player</h3>
+        <form onSubmit={this.onSubmit}>
+          <div className="form-group">
+            <label>Player Name: </label>
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.player_name}
+              onChange={this.onChangePlayerName}
+            />
+          </div>
+          <div className="form-group">
+            <label for="player_team">Player Team:</label>
+            <select
+              id="player_team"
+              name="player_team"
+              value={this.state.player_team}
+              onChange={this.onChangePlayerTeam}
+            >
+              <option value="Galway Lions">Galway Lions</option>
+              <option value="Leitrim Larks">Leitrim Larks</option>
+              <option value="Mayo Mongeese">Mayo Mongeese</option>
+              <option value="Sligo Skylarks">Sligo Skylarks</option>
+              <option value="Roscommon Bears">Roscommon Bears</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label for="player_position">Player Position:</label>
+            <select
+              id="player_position"
+              name="player_position"
+              value={this.state.player_position}
+              onChange={this.onChangePlayerPosition}
+            >
+              <option value="Striker">Striker</option>
+              <option value="Centre Forward">Centre Forward</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label for="player_position">Player Position:</label>
+            <input
+              type="date"
+              id="player_dob"
+              name="player_dob"
+              value={this.state.player_dob}
+              onChange={this.onChangePlayerDob}
+            ></input>
+          </div>
+
+          <div className="form-group">
+            <input
+              type="submit"
+              value="Create Player"
+              className="btn btn-primary"
+            />
+          </div>
+        </form>
+      </div>
+    );
+  }
+}

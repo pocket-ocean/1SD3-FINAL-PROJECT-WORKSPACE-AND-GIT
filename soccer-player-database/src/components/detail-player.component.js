@@ -350,7 +350,7 @@ function SampleDetailPlayer() {
                   position: "right",
                 },
               }}
-          style={{maxWidth: "300px", margin:"auto" }}
+         
 
 
             />
