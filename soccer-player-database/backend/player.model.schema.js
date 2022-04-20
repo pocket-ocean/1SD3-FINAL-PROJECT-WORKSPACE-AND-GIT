@@ -14,19 +14,12 @@ let Player = new Schema({
     player_dob: {
         type: Date
     },
-    player_goals: {
-        type: Array,
-    }
-    player_goal_attempts: {
-        type: Array
-    }
+    player_dob: {
+        type: Date
+    },
 
-    player_passes: {
-        type: Array
-    }
-    player_pass_attempts: {
-        type: Array
-    }
+    matches:[],
+    
 });
 
 module.exports = mongoose.model('Player', Player);

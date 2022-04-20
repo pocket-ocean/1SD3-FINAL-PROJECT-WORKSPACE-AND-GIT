@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 
 export default class CreatePlayer extends Component {
@@ -64,6 +65,25 @@ export default class CreatePlayer extends Component {
     console.log(
       `Empty match array created of length: ${this.state.matches.length}`
     );
+
+      const newPlayer = {
+
+        player_name: this.state.player_name,
+        player_team: this.state.player_team,
+        player_position: this.state.player_position,
+        player_dob: this.state.player_dob,
+        matches: this.state.match
+
+
+
+      }
+
+
+//using an axios post request to send a HTTP post request to the backend end point which is http://localhost:4000/players/add
+
+axios.post('http://localhost:4000/players/add', newPlayer)
+            .then(res => console.log(res.data));
+
 
     this.setState({
       player_name: "",
