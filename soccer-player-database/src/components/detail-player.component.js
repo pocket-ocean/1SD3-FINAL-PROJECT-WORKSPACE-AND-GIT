@@ -72,56 +72,188 @@ const playerObject1 = {
 
 //Logging simple infrormation from the object
 console.log("Player object name: " + playerObject1.player_name);
-console.log("Player has played in " + playerObject1.matches.length + " matches.");
+console.log(
+  "Player has played in " + playerObject1.matches.length + " matches."
+);
 console.log("Match 1 Goals for this player: " + playerObject1.matches[0].goals);
-console.log("Listing all goals for each match this plaer has done! ")
 
-//Listing all goals in sequence
-for (let i = 0; i < playerObject1.matches.length; i++){
-
-  console.log(playerObject1.matches[i].goals)
-
-}
-      
-
+// console.log("Listing all goals for each match this player has done! ")
+// //Listing all goals in sequence
+// for (let i = 0; i < playerObject1.matches.length; i++){
+//   console.log(playerObject1.matches[i].goals)
+// }
 
 //Creating an Array of Goals
 
-for (let i = 0; i < playerObject1.matches.length; i++){
+const goalArray = [];
 
-  console.log(playerObject1.matches[i].goals)
-
-
+for (let i = 0; i < playerObject1.matches.length; i++) {
+  goalArray.push(playerObject1.matches[i].goals);
 }
+console.log("Array of goals:" + goalArray);
 
 //Summing this Array of Goals
 
+var goalTotal = 0;
+
+for (let i = 0; i < goalArray.length; i++) {
+  goalTotal += goalArray[i];
+}
+
+console.log("Total goals:" + goalTotal);
 
 //Creating an Array of Goal Attempts
 
+const goalAttemptsArray = [];
+
+for (let i = 0; i < playerObject1.matches.length; i++) {
+  goalAttemptsArray.push(playerObject1.matches[i].goalAttempts);
+}
+
+console.log("Array of goal attempts:" + goalAttemptsArray);
 
 //Summing this Array of Goal Attempts
 
+var goalAttemptsTotal = 0;
+for (let i = 0; i < goalAttemptsArray.length; i++) {
+  goalAttemptsTotal += goalAttemptsArray[i];
+}
+
+console.log("Total goal Attempts:" + goalAttemptsTotal);
 
 //Creating an Array of Passess
 
+const passArray = [];
+
+for (let i = 0; i < playerObject1.matches.length; i++) {
+  passArray.push(playerObject1.matches[i].passes);
+}
+console.log("Aray of Passes:" + passArray);
 
 //Summing this Array of Passes
 
+var passTotal = 0;
+
+for (let i = 0; i < passArray.length; i++) {
+  passTotal += passArray[i];
+}
+console.log("Total Passes:" + passTotal);
 
 //Creating an Array of Pass Attempts
 
+const passAttemptsArray = [];
 
-//Summing this Array of Pass Attempts 
+for (let i = 0; i < playerObject1.matches.length; i++) {
+  passAttemptsArray.push(playerObject1.matches[i].passAttempts);
+}
+console.log("Aray of Pass Attempts:" + passAttemptsArray);
+
+//Summing this Array of Pass Attempts
+
+var passAttemptsTotal = 0;
+
+for (let i = 0; i < passAttemptsArray.length; i++) {
+  passAttemptsTotal += passAttemptsArray[i];
+}
+console.log("Total Pass Attempts:" + passAttemptsTotal);
+
+// //Generating GoalPie Data
+
+const GoalPieData = {
+  labels: ["Goals", "Goal Attempts"],
+  datasets: [
+    {
+      label: "Goals and Goal Attempts",
+      backgroundColor: ["#B21F00", "#C9DE00"],
+      hoverOffset: 4,
+      data: [goalTotal, goalAttemptsTotal],
+    },
+  ],
+};
 
 
-//Creating an array of 
+//Generating PassPie Data
 
-//I want to them sum this array as I need both! 
+const PassPieData = {
+  labels: ["Passes", "Pass Attempts"],
 
+  datasets: [
+    {
+      label: "Passes and Pass Attempts",
+      backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
+      hoverOffset: 4,
 
+      data: [passTotal, passAttemptsTotal],
+    },
+  ],
+};
 
+//Line chart data
 
+//Creating an Array of Labels for substituting into labels:
+
+const goalLabelArray = [];
+
+for(let i = 0; i < playerObject1.matches.length; i ++){
+
+      goalLabelArray.push('M' + (i+1));
+
+}
+
+ console.log("Array of match labels:" + goalLabelArray)
+
+const GoalLineData = {
+  
+  labels: goalLabelArray,
+  datasets: [
+    {
+      label: "Goals",
+      data: [
+       goalArray.toString
+      ],
+      fill: true,
+      backgroundColor: "rgba(75,192,192,0.2)",
+      borderColor: "#B21F00",
+    },
+    {
+      label: "Attempted Goals",
+      data: [
+        goalAttemptsArray.toString
+      ],
+      fill: false,
+      borderColor: "#C9DE00",
+    },
+  ],
+};
+
+// const PassLineData = {
+//   labels: ["M1", "M2", "M3", "M4"],
+//   datasets: [
+//     {
+//       label: "Passes",
+//       data: [
+//         playerObject1.passes[0],
+//         playerObject1.passes[1],
+//         playerObject1.passes[2],
+//         playerObject1.passes[3],
+//       ],
+//       fill: true,
+//       backgroundColor: "rgba(75,192,192,0.2)",
+//       borderColor: "rgb(255, 99, 132)",
+//     },
+//     {
+//       label: "Attempted Passes",
+//       data: [
+//         playerObject1.passAttempts[0],
+//         playerObject1.passAttempts[1],
+//         playerObject1.passAttempts[2],
+//         playerObject1.passAttempts[3],
+//       ],
+//       fill: false,
+//       borderColor:"rgb(54, 162, 235)",
+//     },
+//   ],
+// };
 
 
 
@@ -130,18 +262,94 @@ for (let i = 0; i < playerObject1.matches.length; i++){
 
 function SampleDetailPlayer() {
   return (
-   
     <div>
-    <p>Here we go!</p>
+      
+      <h3>Sample Player Data Vis</h3>
+
+      <table className="table table-striped" style={{ marginTop: 20 }}>
+        <thead>
+          <tr>
+            <th> Player Name</th>
+            <th> Player Team </th>
+            <th> Player Position </th>
+            <th> Matches Played</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>{playerObject1.player_name}</td>
+            <td>{playerObject1.player_team}</td>
+            <td>{playerObject1.player_position}</td>
+            <td>{playerObject1.matches.length }</td>
+          </tr>
+        </tbody>
+      </table>
+
+        <div className="container">
+        <div className="row">
+          <div className="col-sm-4">
+            <h3>Total Goals and Goal Attempts</h3>
+          <Pie
+              data={GoalPieData}
+              options={{
+                title: {
+                  display: true,
+                  text: "Goals and Attempts",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+              }}
+            />
+          </div>
+
+          <div className="col-sm-4">
+            <h3>Goals and Attempts Over Time</h3>
+            <Line data={GoalLineData} />
+          </div>
+
+          <div className="col-sm-4">
+            {/* <h3>Goal Breakdown</h3>
+            <ul>
+              <li>
+                This player scores <b> {goalPercentage}%</b> of their goals
+                attempts.
+              </li>
+              <br></br>
+              <GoalConditionalCheck />
+
+              <br></br>
+
+              <li>
+                This player successfully passes <b> {passPercentage}% </b> of
+                their pass attempts.
+              </li>
+
+              <br></br>
+              <PassConditionalCheck />
+
+              <br></br>
+            </ul> */}
+          </div>
+        </div>
+      </div>
+
+      <br></br>
+
+
+
+
+
+
+
     </div>
-    );
-  }
-  
-  export default SampleDetailPlayer;
+  );
+}
 
-
-
-
+export default SampleDetailPlayer;
 
 // //tallying goals by creating a goal total Array
 
@@ -180,35 +388,9 @@ function SampleDetailPlayer() {
 //   (passTotal / (passAttemptsTotal + passTotal)) * 100
 // );
 
-// //Generating GoalPie Data
 
-// const GoalPieData = {
-//   labels: ["Goals", "Goal Attempts"],
-//   datasets: [
-//     {
-//       label: "Goals and Goal Attempts",
-//       backgroundColor: ["#B21F00", "#C9DE00"],
-//       hoverOffset: 4,
-//       data: [goalTotal, goalAttemptsTotal],
-//     },
-//   ],
-// };
 
-// //Generating PassPie Data
 
-// const PassPieData = {
-//   labels: ["Passes", "Pass Attempts"],
-
-//   datasets: [
-//     {
-//       label: "Passes and Pass Attempts",
-//       backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
-//       hoverOffset: 4,
-
-//       data: [passTotal, passAttemptsTotal],
-//     },
-//   ],
-// };
 
 // //Naming an average goal percentage
 
@@ -253,65 +435,6 @@ function SampleDetailPlayer() {
 //     );
 // }
 
-// //Line chart data
-
-// const GoalLineData = {
-//   labels: ["M1", "M2", "M3", "M4"],
-//   datasets: [
-//     {
-//       label: "Goals",
-//       data: [
-//         playerObject1.goals[0],
-//         playerObject1.goals[1],
-//         playerObject1.goals[2],
-//         playerObject1.goals[3],
-//       ],
-//       fill: true,
-//       backgroundColor: "rgba(75,192,192,0.2)",
-//       borderColor: "#B21F00",
-//     },
-//     {
-//       label: "Attempted Goals",
-//       data: [
-//         playerObject1.goalAttempts[0],
-//         playerObject1.goalAttempts[1],
-//         playerObject1.goalAttempts[2],
-//         playerObject1.goalAttempts[3],
-//       ],
-//       fill: false,
-//       borderColor: "#C9DE00",
-//     },
-//   ],
-// };
-
-// const PassLineData = {
-//   labels: ["M1", "M2", "M3", "M4"],
-//   datasets: [
-//     {
-//       label: "Passes",
-//       data: [
-//         playerObject1.passes[0],
-//         playerObject1.passes[1],
-//         playerObject1.passes[2],
-//         playerObject1.passes[3],
-//       ],
-//       fill: true,
-//       backgroundColor: "rgba(75,192,192,0.2)",
-//       borderColor: "rgb(255, 99, 132)",
-//     },
-//     {
-//       label: "Attempted Passes",
-//       data: [
-//         playerObject1.passAttempts[0],
-//         playerObject1.passAttempts[1],
-//         playerObject1.passAttempts[2],
-//         playerObject1.passAttempts[3],
-//       ],
-//       fill: false,
-//       borderColor:"rgb(54, 162, 235)",
-//     },
-//   ],
-// };
 
 
 // //GoalTrendConditionalCheck
@@ -327,11 +450,7 @@ function SampleDetailPlayer() {
 
 // };
 
-
-
-
 // //PassTrendConditionalCheck
-
 
 // function PassTrendConditionalCheck(){
 
@@ -343,93 +462,15 @@ function SampleDetailPlayer() {
 
 // };
 
+// // What is shown to the user!
 
-// // What is shown to the user! 
+// <div>
 
 
-  
-   
-   
-    // <div>
-//       <h3>This is a Player Data Vis Example</h3>
 
-//       <table className="table table-striped" style={{ marginTop: 20 }}>
-//         <thead>
-//           <tr>
-//             <th> Player Name</th>
-//             <th> Player Team </th>
-//             <th> Player Position </th>
-//           </tr>
-//         </thead>
-
-//         <tbody>
-//           <tr>
-//             <td>{playerObject1.player_name}</td>
-//             <td>{playerObject1.player_team}</td>
-//             <td>{playerObject1.player_position}</td>
-//           </tr>
-//         </tbody>
-//       </table>
 
 //       <div className="container">
-//         <div className="row">
-//           <div className="col-sm-4">
-//             <h3>Total Goals and Goal Attempts</h3>
-//             <Pie
-//               data={GoalPieData}
-//               options={{
-//                 title: {
-//                   display: true,
-//                   text: "Goals and Attempts",
-//                   fontSize: 20,
-//                 },
-//                 legend: {
-//                   display: true,
-//                   position: "right",
-//                 },
-//               }}
-//             />
-//           </div>
 
-          
-//           <div className="col-sm-4">
-//             <h3>Goals and Attempts Over Time</h3>
-//             <Line data={GoalLineData} />
-//           </div>
-
-
-
-
-//           <div className="col-sm-4">
-//             <h3>Goal Breakdown</h3>
-//             <ul>
-//               <li>
-//                 This player scores <b> {goalPercentage}%</b> of their goals
-//                 attempts.
-//               </li>
-//               <br></br>
-//               <GoalConditionalCheck />
-
-//               <br></br>
-
-//               <li>
-//                 This player successfully passes <b> {passPercentage}% </b> of
-//                 their pass attempts.
-//               </li>
-
-//               <br></br>
-//               <PassConditionalCheck />
-
-//               <br></br>
-//             </ul>
-//           </div>
-//         </div>
-//       </div>
-
-//       <br></br>
-
-//       <div className="container">
-      
 //         <div className="row">
 //         <div className="col-sm-4">
 //             <h3>Total Passes and Pass Attempts</h3>
@@ -446,13 +487,9 @@ function SampleDetailPlayer() {
 //                   position: "right",
 //                 },
 //               }}
-         
-
 
 //             />
 //           </div>
-
-          
 
 //           <div className="col-sm-4">
 //             <h3>Passes and Attempts Over Time</h3>
@@ -461,8 +498,8 @@ function SampleDetailPlayer() {
 
 //           <div className="col-sm-4">
 //             <h3>Passing Breakdown</h3>
-            
-//             <ul>  
+
+//             <ul>
 
 //             <GoalTrendConditionalCheck/>
 
@@ -471,16 +508,12 @@ function SampleDetailPlayer() {
 
 //                 <br></br>
 
-                
-
-
 //             </ul>
 
 //           </div>
 //         </div>
 //       </div>
 
-      
 //     </div>
 //   );
 // }
