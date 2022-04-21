@@ -74,12 +74,7 @@ const playerObject1 = {
       passAttempts: 55,
     },
 
-    {
-      goals: 10,
-      goalAttempts: 25,
-      passes: 45,
-      passAttempts: 55,
-    },
+  
   ],
 };
 
@@ -406,14 +401,6 @@ function SampleDetailPlayer() {
 
               <br></br>
 
-              <li>
-                This player successfully passes <b> {passPercentage}% </b> of
-                their pass attempts.
-              </li>
-
-              <br></br>
-             
-
               <br></br>
             </ul>
           </div>
@@ -422,31 +409,32 @@ function SampleDetailPlayer() {
             <h3>Goal Breakdown Cont</h3>
             <ul>
               <li>
-                Per Match, this player scores <b> {Math.floor(goalTotal/playerObject1.matches.length)}</b> goals.
+                Per Match, this player scores{" "}
+                <b> {Math.floor(goalTotal / playerObject1.matches.length)}</b>{" "}
+                goals.
               </li>
               <br></br>
-              <li>
-
-                This is X Than the average
-
-              </li>
+              <li>This is X Than the average</li>
 
               <br></br>
 
               <li>
-                Per Match, this player makes <b> {Math.floor(goalAttemptsTotal/playerObject1.matches.length)}</b> goal attempts.
+                Per Match, this player makes{" "}
+                <b>
+                  {" "}
+                  {Math.floor(goalAttemptsTotal / playerObject1.matches.length)}
+                </b>{" "}
+                goal attempts.
               </li>
               <br></br>
-              <li>
-
-                This is X Than the average
-
-              </li>
+              <li>This is X Than the average</li>
 
               <br></br>
             </ul>
           </div>
         </div>
+        <hr class="bg-danger border-2 border-top border-danger"></hr>
+
         <div className="container">
           <div className="row">
             <div className="col-sm-8">
@@ -462,7 +450,7 @@ function SampleDetailPlayer() {
             </div>
           </div>
         </div>
-
+        <hr class="bg-danger border-2 border-top border-danger"></hr>
         <div className="container">
           <div className="row">
             <div className="col-sm-4">
@@ -487,26 +475,52 @@ function SampleDetailPlayer() {
               <h3>Passing Breakdown</h3>
 
               <ul>
-              <PassConditionalCheck />
+               
 
+                <li>
+                  This player successfully passes <b> {passPercentage}% </b> of
+                  their pass attempts.
+                </li>
                 <br></br>
-                <PassTrendConditionalCheck />
+
+                <PassConditionalCheck />
+
+                
+             
                 <br></br>
               </ul>
             </div>
 
             <div className="col-sm-4">
-              <h3>Passing Breakdown</h3>
+              <h3>Passing Breakdown Cont</h3>
 
               <ul>
-                <GoalTrendConditionalCheck />
+              <li>
+                Per Match, this player makes
+                <b> {Math.floor(passTotal / playerObject1.matches.length)}</b>{" "}
+                sucessful passes.
+              </li>
+              <br></br>
+              <li>This is X Than the average</li>
 
-                <br></br>
-                <PassTrendConditionalCheck />
-                <br></br>
-              </ul>
+              <br></br>
+
+              <li>
+                Per Match, this player makes{" "}
+                <b>
+                  {" "}
+                  {Math.floor(goalAttemptsTotal / playerObject1.matches.length)}
+                </b>{" "}
+                goal attempts.
+              </li>
+              <br></br>
+              <li>This is X Than the average</li>
+
+              <br></br>
+            </ul>
             </div>
           </div>
+          <hr class="bg-danger border-2 border-top border-danger"></hr>
           <div className="container">
             <div className="row">
               <div className="col-sm-8">
@@ -515,8 +529,8 @@ function SampleDetailPlayer() {
               </div>
 
               <div className="col-sm-4">
-              <h3>Passing Trends</h3>
-              <PassesTrendsCheck/>
+                <h3>Passing Trends</h3>
+                <PassesTrendsCheck />
               </div>
             </div>
           </div>
