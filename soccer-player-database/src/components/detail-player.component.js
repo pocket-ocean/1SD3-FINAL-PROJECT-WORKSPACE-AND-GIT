@@ -67,6 +67,20 @@ const playerObject1 = {
       passes: 33,
       passAttempts: 45,
     },
+    {
+      goals: 10,
+      goalAttempts: 25,
+      passes: 45,
+      passAttempts: 55,
+    },
+
+    {
+      goals: 10,
+      goalAttempts: 25,
+      passes: 45,
+      passAttempts: 55,
+    },
+  
   ],
 };
 
@@ -121,6 +135,12 @@ for (let i = 0; i < goalAttemptsArray.length; i++) {
 
 console.log("Total goal Attempts:" + goalAttemptsTotal);
 
+//getting a goal percentage:
+
+var goalPercentage = Math.floor(
+  (goalTotal / (goalAttemptsTotal + goalTotal)) * 100
+);
+
 //Creating an Array of Passess
 
 const passArray = [];
@@ -157,7 +177,11 @@ for (let i = 0; i < passAttemptsArray.length; i++) {
 }
 console.log("Total Pass Attempts:" + passAttemptsTotal);
 
-// //Generating GoalPie Data
+var passPercentage = Math.floor(
+  (passTotal / (passAttemptsTotal + passTotal)) * 100
+);
+
+//Generating GoalPie Data
 
 const GoalPieData = {
   labels: ["Goals", "Goal Attempts"],
@@ -170,7 +194,6 @@ const GoalPieData = {
     },
   ],
 };
-
 
 //Generating PassPie Data
 
@@ -188,82 +211,130 @@ const PassPieData = {
   ],
 };
 
-//Line chart data
-
 //Creating an Array of Labels for substituting into labels:
 
 const goalLabelArray = [];
 
-for(let i = 0; i < playerObject1.matches.length; i ++){
-
-      goalLabelArray.push('M' + (i+1));
-
+for (let i = 0; i < playerObject1.matches.length; i++) {
+  goalLabelArray.push("M" + (i + 1));
 }
+console.log("Array of match labels:" + goalLabelArray);
 
- console.log("Array of match labels:" + goalLabelArray)
+//Line chart data Goals
 
 const GoalLineData = {
-  
   labels: goalLabelArray,
   datasets: [
     {
       label: "Goals",
-      data: [
-       goalArray.toString
-      ],
+      data: goalArray,
       fill: true,
       backgroundColor: "rgba(75,192,192,0.2)",
       borderColor: "#B21F00",
     },
     {
       label: "Attempted Goals",
-      data: [
-        goalAttemptsArray.toString
-      ],
+      data: goalAttemptsArray,
       fill: false,
       borderColor: "#C9DE00",
     },
   ],
 };
 
-// const PassLineData = {
-//   labels: ["M1", "M2", "M3", "M4"],
-//   datasets: [
-//     {
-//       label: "Passes",
-//       data: [
-//         playerObject1.passes[0],
-//         playerObject1.passes[1],
-//         playerObject1.passes[2],
-//         playerObject1.passes[3],
-//       ],
-//       fill: true,
-//       backgroundColor: "rgba(75,192,192,0.2)",
-//       borderColor: "rgb(255, 99, 132)",
-//     },
-//     {
-//       label: "Attempted Passes",
-//       data: [
-//         playerObject1.passAttempts[0],
-//         playerObject1.passAttempts[1],
-//         playerObject1.passAttempts[2],
-//         playerObject1.passAttempts[3],
-//       ],
-//       fill: false,
-//       borderColor:"rgb(54, 162, 235)",
-//     },
-//   ],
-// };
+//Line chart data Passes
 
+const PassLineData = {
+  labels: goalLabelArray,
+  datasets: [
+    {
+      label: "Passes",
+      data: passArray,
+      fill: true,
+      backgroundColor: "rgba(75,192,192,0.2)",
+      borderColor: "rgb(255, 99, 132)",
+    },
+    {
+      label: "Attempted Passes",
+      data: passAttemptsArray,
+      fill: false,
+      borderColor: "rgb(54, 162, 235)",
+    },
+  ],
+};
 
+//Naming an average goal percentage
 
+var overallGoalAverage = 25;
 
+//Naming the average pass percentage
 
+var overallPassAverage = 35;
+
+//GoalTrendConditionalCheck
+
+function GoalTrendConditionalCheck() {
+  return (
+    <li>
+      This will assess sucessful goals over time, they are either increasing or
+      decreasing, and if the player's attempted goals are trending up or down
+      over time.{" "}
+    </li>
+  );
+}
+
+//PassTrendConditionalCheck
+
+function PassTrendConditionalCheck() {
+  return (
+    <li>
+      This will assess sucessful passes over time, they are either increasing or
+      decreasing, and if the player's attempted passess are trending up or down
+      over time.{" "}
+    </li>
+  );
+}
+
+// What is shown to the user!
+
+//Conditional Rendering
+
+function GoalConditionalCheck() {
+  if (goalPercentage > overallGoalAverage) {
+    return (
+      <li>
+        This is better than the average of <b> {overallGoalAverage}%.</b>
+      </li>
+    );
+  } else if (goalPercentage == overallGoalAverage) {
+    return <li>This is the goal success average.</li>;
+  } else
+    return (
+      <li>
+        This is worse than the average of <b> {overallGoalAverage}%.</b>
+      </li>
+    );
+}
+
+function PassConditionalCheck() {
+  if (passPercentage > overallPassAverage) {
+    return (
+      <li>
+        This is better than the average of <b> {overallPassAverage}%.</b>
+      </li>
+    );
+  } else if (passPercentage == overallPassAverage) {
+    return <li>This is the pass success average.</li>;
+  } else
+    return (
+      <li>
+        This is worse than the average of <b> {overallPassAverage}%.</b>
+      </li>
+    );
+}
 
 function SampleDetailPlayer() {
   return (
     <div>
-      
       <h3>Sample Player Data Vis</h3>
 
       <table className="table table-striped" style={{ marginTop: 20 }}>
@@ -281,16 +352,16 @@ function SampleDetailPlayer() {
             <td>{playerObject1.player_name}</td>
             <td>{playerObject1.player_team}</td>
             <td>{playerObject1.player_position}</td>
-            <td>{playerObject1.matches.length }</td>
+            <td>{playerObject1.matches.length}</td>
           </tr>
         </tbody>
       </table>
 
-        <div className="container">
+      <div className="container">
         <div className="row">
           <div className="col-sm-4">
             <h3>Total Goals and Goal Attempts</h3>
-          <Pie
+            <Pie
               data={GoalPieData}
               options={{
                 title: {
@@ -312,7 +383,7 @@ function SampleDetailPlayer() {
           </div>
 
           <div className="col-sm-4">
-            {/* <h3>Goal Breakdown</h3>
+            <h3>Goal Breakdown</h3>
             <ul>
               <li>
                 This player scores <b> {goalPercentage}%</b> of their goals
@@ -332,190 +403,53 @@ function SampleDetailPlayer() {
               <PassConditionalCheck />
 
               <br></br>
-            </ul> */}
+            </ul>
+          </div>
+        </div>
+
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-4">
+              <h3>Total Passes and Pass Attempts</h3>
+              <Pie
+                data={PassPieData}
+                options={{
+                  title: {
+                    display: true,
+                    text: "Average Rainfall",
+                    fontSize: 20,
+                  },
+                  legend: {
+                    display: true,
+                    position: "right",
+                  },
+                }}
+              />
+            </div>
+
+            <div className="col-sm-4">
+              <h3>Passes and Attempts Over Time</h3>
+              <Line data={PassLineData} />
+            </div>
+
+            <div className="col-sm-4">
+              <h3>Passing Breakdown</h3>
+
+              <ul>
+                <GoalTrendConditionalCheck />
+
+                <br></br>
+                <PassTrendConditionalCheck />
+                <br></br>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
       <br></br>
-
-
-
-
-
-
-
     </div>
   );
 }
 
 export default SampleDetailPlayer;
-
-// //tallying goals by creating a goal total Array
-
-// //tallying goal attempts
-// var goalAttemptsTotal = 0;
-// for (let i = 0; i < playerObject1.goalAttempts.length; i++) {
-//   goalAttemptsTotal = +playerObject1.goalAttempts[i];
-// }
-// console.log("Goal Attempts:" + goalAttemptsTotal);
-
-// //getting a goal percentage:
-
-// var goalPercentage = Math.floor(
-//   (goalTotal / (goalAttemptsTotal + goalTotal)) * 100
-// );
-
-// //tallying passes
-
-// var passTotal = 0;
-// for (let j = 0; j < playerObject1.passes.length; j++) {
-//   passTotal = +playerObject1.passes[j];
-// }
-// console.log("Pass Total:" + passTotal);
-
-// //tallying passes attempts
-
-// var passAttemptsTotal = 0;
-// for (let k = 0; k < playerObject1.passAttempts.length; k++) {
-//   passAttemptsTotal = +playerObject1.passAttempts[k];
-// }
-// console.log("Pass Attempts:" + passAttemptsTotal);
-
-// //getting a pass percentage:
-
-// var passPercentage = Math.floor(
-//   (passTotal / (passAttemptsTotal + passTotal)) * 100
-// );
-
-
-
-
-
-// //Naming an average goal percentage
-
-// var overallGoalAverage = 25;
-
-// //Naming the average pass percentage
-
-// var overallPassAverage = 35;
-
-// //Conditional Rendering
-// function GoalConditionalCheck() {
-//   if (goalPercentage > overallGoalAverage) {
-//     return (
-//       <li>
-//         This is better than the average of <b> {overallGoalAverage}%.</b>
-//       </li>
-//     );
-//   } else if (goalPercentage == overallGoalAverage) {
-//     return <li>This is the goal success average.</li>;
-//   } else
-//     return (
-//       <li>
-//         This is worse than the average of <b> {overallGoalAverage}%.</b>
-//       </li>
-//     );
-// }
-
-// function PassConditionalCheck() {
-//   if (passPercentage > overallPassAverage) {
-//     return (
-//       <li>
-//         This is better than the average of <b> {overallPassAverage}%.</b>
-//       </li>
-//     );
-//   } else if (passPercentage == overallPassAverage) {
-//     return <li>This is the pass success average.</li>;
-//   } else
-//     return (
-//       <li>
-//         This is worse than the average of <b> {overallPassAverage}%.</b>
-//       </li>
-//     );
-// }
-
-
-
-// //GoalTrendConditionalCheck
-
-// function GoalTrendConditionalCheck ()
-// {
-
-//   return (
-
-//     <li>This will assess sucessful goals over time, they are either increasing or decreasing, and if the player's attempted goals are trending up or down over time. </li>
-
-//     )
-
-// };
-
-// //PassTrendConditionalCheck
-
-// function PassTrendConditionalCheck(){
-
-//   return (
-
-//     <li>This will assess sucessful passes over time, they are either increasing or decreasing, and if the player's attempted passess are trending up or down over time. </li>
-
-//     )
-
-// };
-
-// // What is shown to the user!
-
-// <div>
-
-
-
-
-//       <div className="container">
-
-//         <div className="row">
-//         <div className="col-sm-4">
-//             <h3>Total Passes and Pass Attempts</h3>
-//             <Pie
-//               data={PassPieData}
-//               options={{
-//                 title: {
-//                   display: true,
-//                   text: "Average Rainfall",
-//                   fontSize: 20,
-//                 },
-//                 legend: {
-//                   display: true,
-//                   position: "right",
-//                 },
-//               }}
-
-//             />
-//           </div>
-
-//           <div className="col-sm-4">
-//             <h3>Passes and Attempts Over Time</h3>
-//             <Line data={PassLineData} />
-//           </div>
-
-//           <div className="col-sm-4">
-//             <h3>Passing Breakdown</h3>
-
-//             <ul>
-
-//             <GoalTrendConditionalCheck/>
-
-//                 <br></br>
-//             <PassTrendConditionalCheck/>
-
-//                 <br></br>
-
-//             </ul>
-
-//           </div>
-//         </div>
-//       </div>
-
-//     </div>
-//   );
-// }
-
-// export default SampleDetailPlayer;
