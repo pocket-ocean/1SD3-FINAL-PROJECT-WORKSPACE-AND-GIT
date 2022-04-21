@@ -80,7 +80,6 @@ const playerObject1 = {
       passes: 45,
       passAttempts: 55,
     },
-  
   ],
 };
 
@@ -332,6 +331,24 @@ function PassConditionalCheck() {
     );
 }
 
+function GoalTrendsCheck() {
+  return (
+    <li>
+      This will say if a player is getting more or less goals and goaol
+      opportunites over time.
+    </li>
+  );
+}
+
+function PassesTrendsCheck() {
+  return (
+    <li>
+      This will say if a player is getting more or less passes and pass
+      opportunites over time.
+    </li>
+  );
+}
+
 function SampleDetailPlayer() {
   return (
     <div>
@@ -378,11 +395,6 @@ function SampleDetailPlayer() {
           </div>
 
           <div className="col-sm-4">
-            <h3>Goals and Attempts Over Time</h3>
-            <Line data={GoalLineData} />
-          </div>
-
-          <div className="col-sm-4">
             <h3>Goal Breakdown</h3>
             <ul>
               <li>
@@ -400,10 +412,54 @@ function SampleDetailPlayer() {
               </li>
 
               <br></br>
-              <PassConditionalCheck />
+             
 
               <br></br>
             </ul>
+          </div>
+
+          <div className="col-sm-4">
+            <h3>Goal Breakdown Cont</h3>
+            <ul>
+              <li>
+                Per Match, this player scores <b> {Math.floor(goalTotal/playerObject1.matches.length)}</b> goals.
+              </li>
+              <br></br>
+              <li>
+
+                This is X Than the average
+
+              </li>
+
+              <br></br>
+
+              <li>
+                Per Match, this player makes <b> {Math.floor(goalAttemptsTotal/playerObject1.matches.length)}</b> goal attempts.
+              </li>
+              <br></br>
+              <li>
+
+                This is X Than the average
+
+              </li>
+
+              <br></br>
+            </ul>
+          </div>
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-8">
+              <h3>Goals and Attempts Over Time</h3>
+              <Line data={GoalLineData} />
+            </div>
+
+            <div className="col-sm-4">
+              <h3>Goal Trends</h3>
+              <ul>
+                <GoalTrendConditionalCheck />
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -428,8 +484,15 @@ function SampleDetailPlayer() {
             </div>
 
             <div className="col-sm-4">
-              <h3>Passes and Attempts Over Time</h3>
-              <Line data={PassLineData} />
+              <h3>Passing Breakdown</h3>
+
+              <ul>
+              <PassConditionalCheck />
+
+                <br></br>
+                <PassTrendConditionalCheck />
+                <br></br>
+              </ul>
             </div>
 
             <div className="col-sm-4">
@@ -442,6 +505,19 @@ function SampleDetailPlayer() {
                 <PassTrendConditionalCheck />
                 <br></br>
               </ul>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-8">
+                <h3>Passes and Attempts Over Time</h3>
+                <Line data={PassLineData} />
+              </div>
+
+              <div className="col-sm-4">
+              <h3>Passing Trends</h3>
+              <PassesTrendsCheck/>
+              </div>
             </div>
           </div>
         </div>
