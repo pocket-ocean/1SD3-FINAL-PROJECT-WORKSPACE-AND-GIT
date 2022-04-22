@@ -73,6 +73,8 @@ const playerObject1 = {
       passes: 45,
       passAttempts: 55,
     },
+
+    
   ],
 };
 
@@ -467,19 +469,11 @@ function GoalAccuracyTrendsCheck() {
     }
   }
 
-  console.log(
-    "Goal Accuracy Attempts Negative Trend: " +
-      goalAccuracyAttemptsNegativeTrend
-  );
-  console.log(
-    "Goal Accuracy Attempts Positive Trend: " +
-      goalAccuracyAttemptsPositiveTrend
-  );
 
   if (goalAccuracyAttemptsPositiveTrend > goalAccuracyAttemptsNegativeTrend) {
     return (
       <li>
-        <h4>This player is getting more accurate at scoring goals time. </h4>
+        <h4>This player is getting more accurate at scoring goals over time. </h4>
       </li>
     );
   } else if (
@@ -498,7 +492,12 @@ function GoalAccuracyTrendsCheck() {
         <h4>This player is not getting more or less accurate over time. </h4>
       </li>
     );
+    
+ 
+
+
 }
+
 
 //Checking if the player is passing more accuractly over time
 function PassingAccuracyTrendsCheck() {
@@ -535,7 +534,7 @@ function PassingAccuracyTrendsCheck() {
   if (passAccuracyAttemptsPositiveTrend > passAccuracyAttemptsNegativeTrend) {
     return (
       <li>
-        <h4>This player is getting more accurate over time. </h4>
+        <h4>This player is getting more accurate at passing over time. </h4>
       </li>
     );
   } else if (
@@ -749,7 +748,7 @@ function SampleDetailPlayer() {
                 <br></br>
                 <GoalAttemptsTrendsCheck />
                 <br></br>
-                <PassingAccuracyTrendsCheck />
+                <GoalAccuracyTrendsCheck />
               </ul>
             </div>
           </div>
