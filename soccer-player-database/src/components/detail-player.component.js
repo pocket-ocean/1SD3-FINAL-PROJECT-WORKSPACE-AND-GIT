@@ -326,10 +326,10 @@ function GoalTrendsCheck() {
   console.log("Goals Positive Trend: " + goalsPositiveTrend);
 
   if (goalsPositiveTrend > goalsNegativeTrend) {
-    return <li>This player is scoring more goals over time.</li>;
+    return <li><h4>This player is scoring more goals over time.</h4></li>;
   } else if (goalsNegativeTrend > goalsPositiveTrend) {
-    return <li>This player is making less goals over time.</li>;
-  } else return <li>This player is not improving over time</li>;
+    return <li><h4>This player is making less goals over time.</h4></li>;
+  } else return <li><h4>This player is not improving over time.</h4></li>;
 
 }
 
@@ -352,12 +352,14 @@ function GoalAttemptsTrendsCheck() {
   console.log("Goal Attempts Negative Trend: " + goalsAttemptsNegativeTrend);
   console.log("Goal Attempts Positive Trend: " + goalsAttemptsPositiveTrend);
 
-  if (goalsAttemptsNegativeTrend > goalsAttemptsNegativeTrend) {
-    return <li>This player is making more goal attempts over time.</li>;
-  } else if (goalsAttemptsNegativeTrend > goalsAttemptsNegativeTrend) {
-    return <li>This player is making less goal attempts over time.</li>;
-  } else return <li>This player is not improving their goal attempts over time</li>;
+  if (goalsAttemptsPositiveTrend > goalsAttemptsNegativeTrend) {
+    return <li><h4>This player is making more goal attempts over time.</h4></li>;
 
+  } else if (goalsAttemptsNegativeTrend > goalsAttemptsPositiveTrend) {
+    return <li><h4>This player is making less goal attempts over time.</h4></li>;
+
+  } else return <li><h4>This player is not making more goal attempts over time.</h4></li>;
+  
 }
 
 
@@ -375,14 +377,14 @@ function PassesTrendsCheck() {
     }
   }
 
-  console.log("Negative Trend: " + passesNegativeTrend);
-  console.log("Positive Trend: " + passesPositiveTrend);
+  console.log("Passes Negative Trend: " + passesNegativeTrend);
+  console.log("Passes Positive Trend: " + passesPositiveTrend);
 
   if (passesPositiveTrend > passesNegativeTrend) {
-    return <li>This player is making more sucessful passes over time.</li>;
+    return <li><h4>This player is making more sucessful passes over time.</h4></li>;
   } else if (passesNegativeTrend > passesPositiveTrend) {
-    return <li>This player is making less sucessful passes over time.</li>;
-  } else return <li>This player is not improving over time</li>;
+    return <li><h4>This player is making less sucessful passes over time.</h4></li>;
+  } else return <li><h4>This player is not improving over time</h4></li>;
 
 }
 
@@ -402,14 +404,14 @@ function PassAttemptsTrendsCheck() {
     }
   }
 
-  console.log("Negative Trend: " + passAttemptsNegativeTrend);
-  console.log("Positive Trend: " + passAttemptsPositiveTrend);
+  console.log("Pass Attempts Negative Trend: " + passAttemptsNegativeTrend);
+  console.log("Pass Attempts Positive Trend: " + passAttemptsPositiveTrend);
 
   if (passAttemptsPositiveTrend > passAttemptsNegativeTrend) {
-    return <li>This player is making more pass attempts over time.</li>;
+    return <li><h4>This player is making more pass attempts over time.</h4></li>;
   } else if (passAttemptsNegativeTrend > passAttemptsPositiveTrend) {
-    return <li>This player is making less pass attempts over time.</li>;
-  } else return <li>This player is not improving over time</li>;
+    return <li><h4>This player is making less pass attempts over time.</h4></li>;
+  } else return <li><h4>This player is not improving over time.</h4></li>;
 
 }
 
