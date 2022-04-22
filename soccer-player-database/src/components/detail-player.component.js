@@ -73,8 +73,6 @@ const playerObject1 = {
       passes: 45,
       passAttempts: 55,
     },
-
-  
   ],
 };
 
@@ -85,13 +83,6 @@ console.log(
 );
 console.log("Match 1 Goals for this player: " + playerObject1.matches[0].goals);
 
-// console.log("Listing all goals for each match this player has done! ")
-// //Listing all goals in sequence
-// for (let i = 0; i < playerObject1.matches.length; i++){
-//   console.log(playerObject1.matches[i].goals)
-// }
-
-//Creating an Array of Goals
 
 const goalArray = [];
 
@@ -264,29 +255,8 @@ var overallGoalAverage = 25;
 
 var overallPassAverage = 35;
 
-//GoalTrendConditionalCheck
 
-function GoalTrendConditionalCheck() {
-  return (
-    <li>
-      This will assess sucessful goals over time, they are either increasing or
-      decreasing, and if the player's attempted goals are trending up or down
-      over time.{" "}
-    </li>
-  );
-}
 
-//PassTrendConditionalCheck
-
-function PassTrendConditionalCheck() {
-  return (
-    <li>
-      This will assess sucessful passes over time, they are either increasing or
-      decreasing, and if the player's attempted passess are trending up or down
-      over time.{" "}
-    </li>
-  );
-}
 
 // What is shown to the user!
 
@@ -326,24 +296,127 @@ function PassConditionalCheck() {
     );
 }
 
+
+
+
+
+
+
+
+
+//Trends for linear graphs over time
+
+//GoalTrendConditionalCheck
+
 function GoalTrendsCheck() {
-  return (
-    <li>
-      This will say if a player is getting more or less goals and goaol
-      opportunites over time.
-    </li>
-  );
+  var goalsPositiveTrend = 0;
+  var goalsNegativeTrend = 0;
+
+  for (let i = 1; i <= goalArray.length; i++) {
+    if (goalArray[i] > goalArray[i - 1]) {
+      goalsPositiveTrend += goalArray[i] - goalArray[i - 1];
+    }
+
+    if (goalArray[i] < goalArray[i - 1]) {
+      goalsNegativeTrend += goalArray[i - 1] - goalArray[i];
+    }
+  }
+
+  console.log("Goals Negative Trend: " + goalsNegativeTrend);
+  console.log("Goals Positive Trend: " + goalsPositiveTrend);
+
+  if (goalsPositiveTrend > goalsNegativeTrend) {
+    return <li>This player is scoring more goals over time.</li>;
+  } else if (goalsNegativeTrend > goalsPositiveTrend) {
+    return <li>This player is making less goals over time.</li>;
+  } else return <li>This player is not improving over time</li>;
+
 }
+
+
+
+function GoalAttemptsTrendsCheck() {
+  var goalsAttemptsPositiveTrend = 0;
+  var goalsAttemptsNegativeTrend = 0;
+
+  for (let i = 1; i <= goalAttemptsArray.length; i++) {
+    if (goalAttemptsArray[i] > goalAttemptsArray[i - 1]) {
+      goalsAttemptsPositiveTrend += goalAttemptsArray[i] - goalAttemptsArray[i - 1];
+    }
+
+    if (goalAttemptsArray[i] < goalAttemptsArray[i - 1]) {
+      goalsAttemptsNegativeTrend += goalAttemptsArray[i - 1] - goalAttemptsArray[i];
+    }
+  }
+
+  console.log("Goal Attempts Negative Trend: " + goalsAttemptsNegativeTrend);
+  console.log("Goal Attempts Positive Trend: " + goalsAttemptsPositiveTrend);
+
+  if (goalsAttemptsNegativeTrend > goalsAttemptsNegativeTrend) {
+    return <li>This player is making more goal attempts over time.</li>;
+  } else if (goalsAttemptsNegativeTrend > goalsAttemptsNegativeTrend) {
+    return <li>This player is making less goal attempts over time.</li>;
+  } else return <li>This player is not improving their goal attempts over time</li>;
+
+}
+
 
 function PassesTrendsCheck() {
-  return (
-    <li>
-      This will say if a player is getting more or less passes and pass
-      opportunites over time.
-    </li>
-  );
+  var passesPositiveTrend = 0;
+  var passesNegativeTrend = 0;
+
+  for (let i = 1; i <= passArray.length; i++) {
+    if (passArray[i] > passArray[i - 1]) {
+      passesPositiveTrend += passArray[i] - passArray[i - 1];
+    }
+
+    if (passArray[i] < passArray[i - 1]) {
+      passesNegativeTrend += passArray[i - 1] - passArray[i];
+    }
+  }
+
+  console.log("Negative Trend: " + passesNegativeTrend);
+  console.log("Positive Trend: " + passesPositiveTrend);
+
+  if (passesPositiveTrend > passesNegativeTrend) {
+    return <li>This player is making more sucessful passes over time.</li>;
+  } else if (passesNegativeTrend > passesPositiveTrend) {
+    return <li>This player is making less sucessful passes over time.</li>;
+  } else return <li>This player is not improving over time</li>;
+
 }
 
+
+//Passing Attempts Tends Check
+function PassAttemptsTrendsCheck() {
+  var passAttemptsPositiveTrend = 0;
+  var passAttemptsNegativeTrend = 0;
+
+  for (let i = 1; i <= passAttemptsArray.length; i++) {
+    if (passAttemptsArray[i] > passAttemptsArray[i - 1]) {
+      passAttemptsPositiveTrend += passAttemptsArray[i] - passAttemptsArray[i - 1];
+    }
+
+    if (passAttemptsArray[i] < passAttemptsArray[i - 1]) {
+      passAttemptsNegativeTrend += passAttemptsArray[i - 1] - passAttemptsArray[i];
+    }
+  }
+
+  console.log("Negative Trend: " + passAttemptsNegativeTrend);
+  console.log("Positive Trend: " + passAttemptsPositiveTrend);
+
+  if (passAttemptsPositiveTrend > passAttemptsNegativeTrend) {
+    return <li>This player is making more pass attempts over time.</li>;
+  } else if (passAttemptsNegativeTrend > passAttemptsPositiveTrend) {
+    return <li>This player is making less pass attempts over time.</li>;
+  } else return <li>This player is not improving over time</li>;
+
+}
+
+
+
+
+//Encompasing Component
 function SampleDetailPlayer() {
   return (
     <div>
@@ -406,11 +479,11 @@ function SampleDetailPlayer() {
           </div>
 
           <div className="col-sm-4">
-            <h3>Goal Breakdown Cont</h3>
+            <h3>Goals Comparisons Across League</h3>
             <ul>
               <li>
-                Per Match, this player scores{" "}
-                <b> {Math.floor(goalTotal / playerObject1.matches.length)}</b>{" "}
+                Per Match, this player scores
+                <b> {Math.floor(goalTotal / playerObject1.matches.length)}</b>
                 goals.
               </li>
               <br></br>
@@ -419,11 +492,10 @@ function SampleDetailPlayer() {
               <br></br>
 
               <li>
-                Per Match, this player makes{" "}
+                Per Match, this player makes
                 <b>
-                  {" "}
                   {Math.floor(goalAttemptsTotal / playerObject1.matches.length)}
-                </b>{" "}
+                </b>
                 goal attempts.
               </li>
               <br></br>
@@ -445,7 +517,9 @@ function SampleDetailPlayer() {
             <div className="col-sm-4">
               <h3>Goal Trends</h3>
               <ul>
-                <GoalTrendConditionalCheck />
+                <GoalTrendsCheck />
+                <br></br>
+                <GoalAttemptsTrendsCheck />
               </ul>
             </div>
           </div>
@@ -475,8 +549,6 @@ function SampleDetailPlayer() {
               <h3>Passing Breakdown</h3>
 
               <ul>
-               
-
                 <li>
                   This player successfully passes <b> {passPercentage}% </b> of
                   their pass attempts.
@@ -485,8 +557,6 @@ function SampleDetailPlayer() {
 
                 <PassConditionalCheck />
 
-                
-             
                 <br></br>
               </ul>
             </div>
@@ -495,29 +565,30 @@ function SampleDetailPlayer() {
               <h3>Passing Breakdown Cont</h3>
 
               <ul>
-              <li>
-                Per Match, this player makes
-                <b> {Math.floor(passTotal / playerObject1.matches.length)}</b>{" "}
-                sucessful passes.
-              </li>
-              <br></br>
-              <li>This is X Than the average</li>
+                <li>
+                  Per Match, this player makes
+                  <b> {Math.floor(passTotal / playerObject1.matches.length)}</b>
+                  sucessful passes.
+                </li>
+                <br></br>
+                <li>This is X Than the average</li>
 
-              <br></br>
+                <br></br>
 
-              <li>
-                Per Match, this player makes{" "}
-                <b>
-                  {" "}
-                  {Math.floor(goalAttemptsTotal / playerObject1.matches.length)}
-                </b>{" "}
-                goal attempts.
-              </li>
-              <br></br>
-              <li>This is X Than the average</li>
+                <li>
+                  Per Match, this player makes
+                  <b>
+                    {Math.floor(
+                      goalAttemptsTotal / playerObject1.matches.length
+                    )}
+                  </b>
+                  goal attempts.
+                </li>
+                <br></br>
+                <li>This is X Than the average</li>
 
-              <br></br>
-            </ul>
+                <br></br>
+              </ul>
             </div>
           </div>
           <hr class="bg-danger border-2 border-top border-danger"></hr>
@@ -530,7 +601,11 @@ function SampleDetailPlayer() {
 
               <div className="col-sm-4">
                 <h3>Passing Trends</h3>
+                <ul>
                 <PassesTrendsCheck />
+                <br></br>
+                <PassAttemptsTrendsCheck />
+                </ul>
               </div>
             </div>
           </div>
