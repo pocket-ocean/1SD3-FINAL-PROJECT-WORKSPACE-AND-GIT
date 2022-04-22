@@ -76,31 +76,30 @@ const playerObject1 = {
   ],
 };
 
+//Naming an average goal percentage
+var overallGoalAverage = 25;
 
+//Naming the average pass percentage
+var overallPassAverage = 35;
 
-//Logging simple infrormation from the object
-console.log("Player object name: " + playerObject1.player_name);
-console.log(
-  "Player has played in " + playerObject1.matches.length + " matches."
-);
-console.log("Match 1 Goals for this player: " + playerObject1.matches[0].goals);
+//Declaring useful variables:
+var overallGoalAveragePerMatch = 3;
+var overallGoalAverageAttemptPerMatch = 12;
+var overallPassAverage = 23;
+var overallPassAttemptsAverage = 37;
 
 const goalArray = [];
 
 for (let i = 0; i < playerObject1.matches.length; i++) {
   goalArray.push(playerObject1.matches[i].goals);
 }
-console.log("Array of goals:" + goalArray);
 
-//Summing this Array of Goals
-
+//Summing goalArray
 var goalTotal = 0;
 
 for (let i = 0; i < goalArray.length; i++) {
   goalTotal += goalArray[i];
 }
-
-console.log("Total goals:" + goalTotal);
 
 //Creating an Array of Goal Attempts
 
@@ -110,8 +109,6 @@ for (let i = 0; i < playerObject1.matches.length; i++) {
   goalAttemptsArray.push(playerObject1.matches[i].goalAttempts);
 }
 
-console.log("Array of goal attempts:" + goalAttemptsArray);
-
 //Summing this Array of Goal Attempts
 
 var goalAttemptsTotal = 0;
@@ -119,22 +116,17 @@ for (let i = 0; i < goalAttemptsArray.length; i++) {
   goalAttemptsTotal += goalAttemptsArray[i];
 }
 
-console.log("Total goal Attempts:" + goalAttemptsTotal);
-
 //getting a goal percentage:
-
 var goalPercentage = Math.floor(
   (goalTotal / (goalAttemptsTotal + goalTotal)) * 100
 );
 
 //Creating an Array of Passess
-
 const passArray = [];
 
 for (let i = 0; i < playerObject1.matches.length; i++) {
   passArray.push(playerObject1.matches[i].passes);
 }
-console.log("Aray of Passes:" + passArray);
 
 //Summing this Array of Passes
 
@@ -143,7 +135,6 @@ var passTotal = 0;
 for (let i = 0; i < passArray.length; i++) {
   passTotal += passArray[i];
 }
-console.log("Total Passes:" + passTotal);
 
 //Creating an Array of Pass Attempts
 
@@ -152,7 +143,6 @@ const passAttemptsArray = [];
 for (let i = 0; i < playerObject1.matches.length; i++) {
   passAttemptsArray.push(playerObject1.matches[i].passAttempts);
 }
-console.log("Aray of Pass Attempts:" + passAttemptsArray);
 
 //Summing this Array of Pass Attempts
 
@@ -161,7 +151,6 @@ var passAttemptsTotal = 0;
 for (let i = 0; i < passAttemptsArray.length; i++) {
   passAttemptsTotal += passAttemptsArray[i];
 }
-console.log("Total Pass Attempts:" + passAttemptsTotal);
 
 var passPercentage = Math.floor(
   (passTotal / (passAttemptsTotal + passTotal)) * 100
@@ -204,7 +193,6 @@ const goalLabelArray = [];
 for (let i = 0; i < playerObject1.matches.length; i++) {
   goalLabelArray.push("M" + (i + 1));
 }
-console.log("Array of match labels:" + goalLabelArray);
 
 //Line chart data Goals
 
@@ -248,35 +236,30 @@ const PassLineData = {
   ],
 };
 
-//Naming an average goal percentage
-
-var overallGoalAverage = 25;
-
-//Naming the average pass percentage
-
-var overallPassAverage = 35;
-
-//Declaring useful variables:
-var overallGoalAveragePerMatch = 3;
-
-var overallGoalAverageAttemptPerMatch = 12;
-// What is shown to the user!
-
-//Conditional Rendering
+//Conditional Rendering Analysis Functions
 
 function GoalConditionalCheck() {
   if (goalPercentage > overallGoalAverage) {
     return (
       <li>
-        <h5>This is better than the average of <b> {overallGoalAverage}%.</b> </h5>
+        <h5>
+          This is better than the average of <b> {overallGoalAverage}%.</b>{" "}
+        </h5>
       </li>
     );
   } else if (goalPercentage == overallGoalAverage) {
-    return <li> <h5>This is the goal success average.</h5></li>
+    return (
+      <li>
+        {" "}
+        <h5>This is the goal success average.</h5>
+      </li>
+    );
   } else
     return (
       <li>
-        <h5>This is worse than the average of <b> {overallGoalAverage}%.</b></h5>
+        <h5>
+          This is worse than the average of <b> {overallGoalAverage}%.</b>
+        </h5>
       </li>
     );
 }
@@ -285,7 +268,9 @@ function PassConditionalCheck() {
   if (passPercentage > overallPassAverage) {
     return (
       <li>
-        This is better than the average of <b> {overallPassAverage}%.</b>
+        <h5>
+          This is better than the average of <b> {overallPassAverage}%.</b>
+        </h5>
       </li>
     );
   } else if (passPercentage == overallPassAverage) {
@@ -293,7 +278,9 @@ function PassConditionalCheck() {
   } else
     return (
       <li>
-        <h4>This is worse than the average of <b> {overallPassAverage}%.</b></h4>
+        <h4>
+          This is worse than the average of <b> {overallPassAverage}%.</b>
+        </h4>
       </li>
     );
 }
@@ -455,36 +442,200 @@ function PassAttemptsTrendsCheck() {
     );
 }
 
+//Checking if the player is getting more accurate over time
 
-function PerMatchGoalConditional(){
-    if(   Math.floor(goalTotal / playerObject1.matches.length) > overallGoalAveragePerMatch){
-  return(<li>This is <b>better</b> than the average rate of {overallGoalAveragePerMatch} goals per match. </li>)
+function GoalAccuracyTrendsCheck() {
+  const GoalAccuracyTrendsArray = [];
+
+  for (let i = 0; i < playerObject1.matches.length; i++) {
+    GoalAccuracyTrendsArray.push(goalAttemptsArray[i] - goalArray[i]);
+  }
+
+  //Now run the trend check!
+  var goalAccuracyAttemptsPositiveTrend = 0;
+  var goalAccuracyAttemptsNegativeTrend = 0;
+
+  for (let i = 1; i <= GoalAccuracyTrendsArray.length; i++) {
+    if (GoalAccuracyTrendsArray[i] > GoalAccuracyTrendsArray[i - 1]) {
+      goalAccuracyAttemptsPositiveTrend +=
+        GoalAccuracyTrendsArray[i] - GoalAccuracyTrendsArray[i - 1];
+    }
+
+    if (GoalAccuracyTrendsArray[i] < GoalAccuracyTrendsArray[i - 1]) {
+      goalAccuracyAttemptsNegativeTrend +=
+        GoalAccuracyTrendsArray[i - 1] - GoalAccuracyTrendsArray[i];
+    }
+  }
+
+  console.log(
+    "Goal Accuracy Attempts Negative Trend: " +
+      goalAccuracyAttemptsNegativeTrend
+  );
+  console.log(
+    "Goal Accuracy Attempts Positive Trend: " +
+      goalAccuracyAttemptsPositiveTrend
+  );
+
+  if (goalAccuracyAttemptsPositiveTrend > goalAccuracyAttemptsNegativeTrend) {
+    return (
+      <li>
+        <h4>This player is getting more accurate at scoring goals time. </h4>
+      </li>
+    );
+  } else if (
+    goalAccuracyAttemptsPositiveTrend < goalAccuracyAttemptsNegativeTrend
+  ) {
+    return (
+      <li>
+        <h4>
+          This player is getting less accurate at scoring goals over time.{" "}
+        </h4>
+      </li>
+    );
+  } else
+    return (
+      <li>
+        <h4>This player is not getting more or less accurate over time. </h4>
+      </li>
+    );
 }
 
-else if( Math.floor(goalTotal / playerObject1.matches.length) < overallGoalAveragePerMatch){
+//Checking if the player is passing more accuractly over time
+function PassingAccuracyTrendsCheck() {
+  const PassingAccuracyTrendsArray = [];
 
-  return(<li>This is <b>worse</b> than the average rate of {overallGoalAveragePerMatch} goals per match </li>)
+  for (let i = 0; i < playerObject1.matches.length; i++) {
+    PassingAccuracyTrendsArray.push(passAttemptsArray[i] - passArray[i]);
+  }
+  //Now run the trend check!
+  var passAccuracyAttemptsPositiveTrend = 0;
+  var passAccuracyAttemptsNegativeTrend = 0;
+
+  for (let i = 1; i <= PassingAccuracyTrendsArray.length; i++) {
+    if (PassingAccuracyTrendsArray[i] > PassingAccuracyTrendsArray[i - 1]) {
+      passAccuracyAttemptsPositiveTrend +=
+        PassingAccuracyTrendsArray[i] - PassingAccuracyTrendsArray[i - 1];
+    }
+
+    if (PassingAccuracyTrendsArray[i] < PassingAccuracyTrendsArray[i - 1]) {
+      passAccuracyAttemptsNegativeTrend +=
+        PassingAccuracyTrendsArray[i - 1] - PassingAccuracyTrendsArray[i];
+    }
+  }
+
+  console.log(
+    "Pass Accuracy Attempts Negative Trend: " +
+      passAccuracyAttemptsNegativeTrend
+  );
+  console.log(
+    "Pass Accuracy Attempts Positive Trend: " +
+      passAccuracyAttemptsPositiveTrend
+  );
+
+  if (passAccuracyAttemptsPositiveTrend > passAccuracyAttemptsNegativeTrend) {
+    return (
+      <li>
+        <h4>This player is getting more accurate over time. </h4>
+      </li>
+    );
+  } else if (
+    passAccuracyAttemptsPositiveTrend < passAccuracyAttemptsNegativeTrend
+  ) {
+    return (
+      <li>
+        <h4>This player is getting less accurate over time. </h4>
+      </li>
+    );
+  } else
+    return (
+      <li>
+        <h4>This player is not getting more or less accurate over time. </h4>
+      </li>
+    );
 }
 
-else return (<li>This is the average performance.</li>)
-
+function PerMatchGoalConditional() {
+  if (
+    Math.floor(goalTotal / playerObject1.matches.length) >
+    overallGoalAveragePerMatch
+  ) {
+    return (
+      <li>
+        This is <b>better</b> than the average rate of{" "}
+        {overallGoalAveragePerMatch} goals per match.{" "}
+      </li>
+    );
+  } else if (
+    Math.floor(goalTotal / playerObject1.matches.length) <
+    overallGoalAveragePerMatch
+  ) {
+    return (
+      <li>
+        This is <b>worse</b> than the average rate of{" "}
+        {overallGoalAveragePerMatch} goals per match{" "}
+      </li>
+    );
+  } else return <li>This is the average performance.</li>;
 }
 
+function PerMatchGoalAttemptConditional() {
+  if (
+    Math.floor(goalAttemptsTotal / playerObject1.matches.length) >
+    overallGoalAverageAttemptPerMatch
+  ) {
+    return (
+      <li>
+        This is <b>better</b> than the average rate of{" "}
+        {overallGoalAverageAttemptPerMatch} goals per match{" "}
+      </li>
+    );
+  } else if (
+    Math.floor(goalAttemptsTotal / playerObject1.matches.length) <
+    overallGoalAverageAttemptPerMatch
+  ) {
+    return (
+      <li>
+        This is <b>worse</b> than the average rate of{" "}
+        {overallGoalAverageAttemptPerMatch} goals per match{" "}
+      </li>
+    );
+  } else return <li>This is the average performance.</li>;
+}
 
-function PerMatchGoalAttemptConditional(){
-  if(   Math.floor(goalAttemptsTotal / playerObject1.matches.length) > overallGoalAverageAttemptPerMatch){
-    return(<li>This is <b>better</b> than the average rate of {overallGoalAverageAttemptPerMatch} goals per match </li>)
+function PassingAverageConditionalCheck() {
+  if (
+    Math.floor(passTotal / playerObject1.matches.length) > overallPassAverage
+  ) {
+    return (
+      <li>
+        This is better than the average of <b>{overallPassAverage}</b> sucessful
+        passes per game.{" "}
+      </li>
+    );
+  } else if (
+    Math.floor(passTotal / playerObject1.matches.length) < overallPassAverage
+  ) {
+    return (
+      <li>
+        This is worse than the average of <b>{overallPassAttemptsAverage}</b>{" "}
+        sucessful passes per game.{" "}
+      </li>
+    );
   }
-  
-  else if( Math.floor(goalAttemptsTotal / playerObject1.matches.length) < overallGoalAverageAttemptPerMatch){
-  
-    return(<li>This is <b>worse</b> than the average rate of {overallGoalAverageAttemptPerMatch} goals per match </li>)
-  }
-  
-  else return (<li>This is the average performance.</li>)
-  
-  }
-  
+}
+
+function PassAttemptsAverageConditional() {
+  if (
+    Math.floor((passTotal + passAttemptsTotal) / playerObject1.matches.length) >
+    overallPassAverage
+  )
+    return (
+      <li>
+        This is more than the average of <b>{overallPassAttemptsAverage}</b>{" "}
+        pass attempts per game.{" "}
+      </li>
+    );
+}
 
 //Encompasing Component
 function SampleDetailPlayer() {
@@ -536,8 +687,10 @@ function SampleDetailPlayer() {
             <h3>Goal Breakdown</h3>
             <ul>
               <li>
-                <h5>This player scores <b> {goalPercentage}%</b> of their goal
-                attempts. </h5>
+                <h5>
+                  This player scores <b> {goalPercentage}%</b> of their goal
+                  attempts.{" "}
+                </h5>
               </li>
               <br></br>
               <GoalConditionalCheck />
@@ -557,18 +710,24 @@ function SampleDetailPlayer() {
                 goals.
               </li>
               <br></br>
-             <PerMatchGoalConditional/>
+              <PerMatchGoalConditional />
 
               <br></br>
 
               <li>
-                Per Match, this player makes <b>
-                  {Math.floor(goalAttemptsTotal / playerObject1.matches.length)}
-                </b> goal attempts.
+                Per Match, this player makes
+                <b>
+                  {" "}
+                  {Math.floor(
+                    (goalAttemptsTotal + goalTotal) /
+                      playerObject1.matches.length
+                  )}{" "}
+                </b>
+                goal attempts.
               </li>
               <br></br>
-              
-              <PerMatchGoalAttemptConditional/>
+
+              <PerMatchGoalAttemptConditional />
 
               <br></br>
             </ul>
@@ -589,6 +748,8 @@ function SampleDetailPlayer() {
                 <GoalTrendsCheck />
                 <br></br>
                 <GoalAttemptsTrendsCheck />
+                <br></br>
+                <PassingAccuracyTrendsCheck />
               </ul>
             </div>
           </div>
@@ -619,8 +780,10 @@ function SampleDetailPlayer() {
 
               <ul>
                 <li>
-                  <h5>This player successfully passes <b> {passPercentage}% </b> of
-                  their pass attempts.</h5>
+                  <h5>
+                    This player successfully passes <b> {passPercentage}% </b>{" "}
+                    of their pass attempts.
+                  </h5>
                 </li>
                 <br></br>
 
@@ -635,26 +798,27 @@ function SampleDetailPlayer() {
 
               <ul>
                 <li>
-                  Per Match, this player makes
-                  <b> {Math.floor(passTotal / playerObject1.matches.length)}</b>
+                  Per Match, this player makes{" "}
+                  <b>{Math.floor(passTotal / playerObject1.matches.length)}</b>{" "}
                   sucessful passes.
                 </li>
                 <br></br>
-                <li>This is X Than the average</li>
+                <PassingAverageConditionalCheck />
 
                 <br></br>
 
                 <li>
-                  Per Match, this player makes
+                  Per Match, this player makes{" "}
                   <b>
                     {Math.floor(
-                      goalAttemptsTotal / playerObject1.matches.length
+                      (passTotal + passAttemptsTotal) /
+                        playerObject1.matches.length
                     )}
-                  </b>
-                  goal attempts.
+                  </b>{" "}
+                  pass attempts.
                 </li>
                 <br></br>
-                <li>This is X Than the average</li>
+                <PassAttemptsAverageConditional />
 
                 <br></br>
               </ul>
@@ -674,6 +838,9 @@ function SampleDetailPlayer() {
                   <PassesTrendsCheck />
                   <br></br>
                   <PassAttemptsTrendsCheck />
+
+                  <br></br>
+                  <PassingAccuracyTrendsCheck />
                 </ul>
               </div>
             </div>
