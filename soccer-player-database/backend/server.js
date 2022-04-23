@@ -76,6 +76,7 @@ playerRoutes.route("/update/:id").post(function(req, res) {
 });
 
 playerRoutes.route("/add").post(function(req, res) {
+  console.log(req.body)
   let player = new Player(req.body);
   player
     .save()

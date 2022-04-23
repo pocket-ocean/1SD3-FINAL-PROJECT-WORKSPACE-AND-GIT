@@ -453,6 +453,7 @@ function GoalAccuracyTrendsCheck() {
     GoalAccuracyTrendsArray.push(goalAttemptsArray[i] - goalArray[i]);
   }
 
+  console.log("Goal Accuracy Trends Array: " + GoalAccuracyTrendsArray);
   //Now run the trend check!
   var goalAccuracyAttemptsPositiveTrend = 0;
   var goalAccuracyAttemptsNegativeTrend = 0;
@@ -469,11 +470,13 @@ function GoalAccuracyTrendsCheck() {
     }
   }
 
+  console.log("Goal Accuracy Trends Negative Total: " + goalAccuracyAttemptsNegativeTrend);
+  console.log("Goal Accuracy Trends Positive Total: " + goalAccuracyAttemptsPositiveTrend);
 
   if (goalAccuracyAttemptsPositiveTrend > goalAccuracyAttemptsNegativeTrend) {
     return (
       <li>
-        <h4>This player is getting more accurate at scoring goals over time. </h4>
+        <h4>This player is getting less accurate at scoring goals over time. </h4>
       </li>
     );
   } else if (
@@ -482,7 +485,7 @@ function GoalAccuracyTrendsCheck() {
     return (
       <li>
         <h4>
-          This player is getting less accurate at scoring goals over time.{" "}
+          This player is getting more accurate at scoring goals over time.{" "}
         </h4>
       </li>
     );
@@ -522,6 +525,8 @@ function PassingAccuracyTrendsCheck() {
     }
   }
 
+  console.log("Pass Accuracy Array:" + PassingAccuracyTrendsArray );
+
   console.log(
     "Pass Accuracy Attempts Negative Trend: " +
       passAccuracyAttemptsNegativeTrend
@@ -531,14 +536,14 @@ function PassingAccuracyTrendsCheck() {
       passAccuracyAttemptsPositiveTrend
   );
 
-  if (passAccuracyAttemptsPositiveTrend > passAccuracyAttemptsNegativeTrend) {
+  if (passAccuracyAttemptsNegativeTrend > passAccuracyAttemptsPositiveTrend) {
     return (
       <li>
         <h4>This player is getting more accurate at passing over time. </h4>
       </li>
     );
   } else if (
-    passAccuracyAttemptsPositiveTrend < passAccuracyAttemptsNegativeTrend
+    passAccuracyAttemptsPositiveTrend > passAccuracyAttemptsNegativeTrend
   ) {
     return (
       <li>
@@ -691,7 +696,7 @@ function SampleDetailPlayer() {
                   attempts.{" "}
                 </h5>
               </li>
-              <br></br>
+            
               <GoalConditionalCheck />
 
               <br></br>
@@ -763,7 +768,7 @@ function SampleDetailPlayer() {
                 options={{
                   title: {
                     display: true,
-                    text: "Average Rainfall",
+                    text: "Pass Data",
                     fontSize: 20,
                   },
                   legend: {
