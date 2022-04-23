@@ -408,7 +408,7 @@ function PassesTrendsCheck() {
 function PassAttemptsTrendsCheck() {
   var passAttemptsPositiveTrend = 0;
   var passAttemptsNegativeTrend = 0;
-
+console.log("Pass Attempts Array: " + passAttemptsArray)
   for (let i = 1; i <= passAttemptsArray.length; i++) {
     if (passAttemptsArray[i] > passAttemptsArray[i - 1]) {
       passAttemptsPositiveTrend +=
@@ -476,7 +476,7 @@ function GoalAccuracyTrendsCheck() {
   if (goalAccuracyAttemptsPositiveTrend > goalAccuracyAttemptsNegativeTrend) {
     return (
       <li>
-        <h4>This player is getting less accurate at scoring goals over time. They are worsening at a rate of {Math.floor(goalAccuracyAttemptsPositiveTrend/GoalAccuracyTrendsArray.length)} goal attempts a match. </h4>
+        <h4>This player is getting less accurate at scoring goals over time. They are worsening at an average rate of {Math.floor(goalAccuracyAttemptsPositiveTrend/GoalAccuracyTrendsArray.length)} goal attempts a match. </h4>
       </li>
     );
   } else if (
@@ -485,7 +485,7 @@ function GoalAccuracyTrendsCheck() {
     return (
       <li>
         <h4>
-          This player is getting more accurate at scoring goals over time. They are improving at a rate of  {Math.floor(goalAccuracyAttemptsNegativeTrend/GoalAccuracyTrendsArray.length)} goals a match. 
+          This player is getting more accurate at scoring goals over time. They are improving at an average rate of  {Math.floor(goalAccuracyAttemptsNegativeTrend/GoalAccuracyTrendsArray.length)} goals a match. 
         </h4>
       </li>
     );
@@ -539,7 +539,7 @@ function PassingAccuracyTrendsCheck() {
   if (passAccuracyAttemptsNegativeTrend > passAccuracyAttemptsPositiveTrend) {
     return (
       <li>
-        <h4>This player is getting more accurate at passing over time. They are improving at a rate of {passAccuracyAttemptsNegativeTrend/PassingAccuracyTrendsArray.length} accurate passes a match.  </h4>
+        <h4>This player is getting more accurate at passing over time. They are improving at an average rate of {passAccuracyAttemptsNegativeTrend/PassingAccuracyTrendsArray.length} accurate passes a match.  </h4>
       </li>
     );
   } else if (
@@ -547,7 +547,7 @@ function PassingAccuracyTrendsCheck() {
   ) {
     return (
       <li>
-        <h4>This player is getting less accurate at passing over time. They are worsening at a rate of {Math.floor(passAccuracyAttemptsPositiveTrend/PassingAccuracyTrendsArray.length)} pass attempt(s) a match.  </h4>
+        <h4>This player is getting less accurate at passing over time. They are worsening at an average rate of {Math.floor(passAccuracyAttemptsPositiveTrend/PassingAccuracyTrendsArray.length)} pass attempt(s) a match.  </h4>
       </li>
 
       

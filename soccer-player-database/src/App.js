@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import CreatePlayer from "./components/create-player.component";
-import EditPlayer from "./components/edit-player.component";
+import AddMatch from "./components/add-match.component";
 import PlayersList from "./components/players-list.component";
 import SampleDetailPlayer from "./components/detail-player.component";
 
@@ -35,7 +35,7 @@ class App extends Component {
           <Routes>
           <Route path="/" element={<PlayersList/>}/>
           <Route path="/create" element={<CreatePlayer/>} />
-          <Route path="/edit/:id" element={<EditPlayer/>} />
+          <Route path="/AddMatch/:id" element={<AddMatch/>} />
           <Route path="/chart/" element={<SampleDetailPlayer/>} />
          
           </Routes>

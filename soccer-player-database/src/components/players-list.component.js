@@ -42,8 +42,9 @@ const Player = props => (
       <td>{props.player.player_name}</td>
       <td>{props.player.player_position}</td>
       <td>{props.player.player_team}</td>
+      <td>{props.player.matches.length}</td>
       <td>
-          <Link to={"/edit/"+props.player._id}>Edit</Link>
+          <Link to={"/addmatch/"+props.player._id}>Add Matches</Link>
       </td>
       <td>
           <Link to={"/detail/"+props.player._id}>Detail</Link>
@@ -85,8 +86,10 @@ export default class PlayersList extends Component {
                           <th>Name</th>
                           <th>Position</th>
                           <th>Team</th>
-                          <th>Action 1</th>
-                          <th>Action 2</th>
+                          <th>No of Matches Played</th>
+                    
+                          <th>Add Matches</th>
+                          <th>View Player Data Visualization</th>
                       </tr>
                   </thead>
                   <tbody>
