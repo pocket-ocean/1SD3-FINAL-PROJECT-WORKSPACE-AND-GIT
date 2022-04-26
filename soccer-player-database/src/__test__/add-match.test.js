@@ -1,7 +1,7 @@
 import React from "react";
 import {render, screen, within} from '@testing-library/react'
 import AddMatch from '../components/add-match.component'
-import '@testing-library/jest-dom/extend-expect';
+
 
 
 //throws error, expect (recieved) to be in the document 
@@ -14,7 +14,7 @@ test('Renders a heading for the user', async () => {
    
 });  
 
-//Check for button?
+//This test passes!
 test('Renders a button for the user', async () => {
     render(<AddMatch/>);
     const buttonElement = screen.getByRole("button");
