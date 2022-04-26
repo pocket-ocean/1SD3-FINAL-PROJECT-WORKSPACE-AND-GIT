@@ -1,6 +1,7 @@
 import React from "react";
-import {render, screen, within} from '@testing-library/react'
-import AddMatch from '../components/add-match.component'
+import {render, screen, within} from '@testing-library/react';
+import AddMatch from '../components/add-match.component';
+import '@testing-library/jest-dom';
 
 
 
@@ -14,6 +15,7 @@ test('Renders a heading for the user', async () => {
    
 });  
 
+
 //This test passes!
 test('Renders a button for the user', async () => {
     render(<AddMatch/>);
@@ -22,4 +24,11 @@ test('Renders a button for the user', async () => {
    
 });  
 
-//Check for button text?
+
+//Checks that the header role is present
+// test('number form present for user', async () => {
+//     render(<AddMatch/>);
+//     const numberEntry = screen.getAllByRole("spinbutton");
+//     expect( numberEntry).toBeInTheDocument();
+   
+// });  
