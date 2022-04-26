@@ -26,9 +26,9 @@ test('Renders a button for the user', async () => {
 
 
 //Checks that the header role is present
-// test('number form present for user', async () => {
-//     render(<AddMatch/>);
-//     const numberEntry = screen.getAllByRole("spinbutton");
-//     expect( numberEntry).toBeInTheDocument();
+test('checks that number inputs are present for user', async () => {
+    render(<AddMatch/>);
+    const numberEntries = screen.getAllByRole("spinbutton");
+    expect( numberEntries.length).toBe(4);
    
-// });  
+});  

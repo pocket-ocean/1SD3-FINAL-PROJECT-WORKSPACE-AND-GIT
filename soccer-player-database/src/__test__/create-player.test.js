@@ -19,6 +19,14 @@ test('Renders a button for the user', async () => {
    
 });
 
+//This test passes!
+test('Checks that all current drop down optons are present, will need to be checked when more options are added. Current option total is 7.', async () => {
+    render(<CreatePlayer/>);
+    const options = screen.getAllByRole("option");
+    expect( options.length).toBe(7);
+   
+}); 
+
 // test('Renders a textbox for the user', async () => {
 //     render(<CreatePlayer/>);
 //     const textbox = screen.getByRole("textbox");
@@ -26,16 +34,10 @@ test('Renders a button for the user', async () => {
    
 // });  
 
-// test('Renders a combobox for the user', async () => {
-//     render(<CreatePlayer/>);
-//     const combobox = screen.getAllByRole("combobox");
-//     expect( combobox).toBeInTheDocument();
+test('Renders a combobox for the user', async () => {
+    render(<CreatePlayer/>);
+    const combobox = screen.getAllByRole("combobox");
+    expect( combobox).toBeInTheDocument();
    
-// });  
+})
 
-// test('Renders a drop down option for the user', async () => {
-//     render(<CreatePlayer/>);
-//     const option = screen.getAllByRole("option");
-//     expect( option).toBeInTheDocument();
-   
-// }); 
