@@ -7,7 +7,7 @@ import CreatePlayer from "./components/create-player.component";
 import AddMatch from "./components/add-match.component";
 import PlayersList from "./components/players-list.component";
 import SampleDetailPlayer from "./components/detail-player.component";
-
+import EditPlayer from "./components/edit-player.component";
 
 class App extends Component {
   render() {

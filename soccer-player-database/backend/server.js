@@ -12,10 +12,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const playerRoutes = express.Router();
-
 const PORT = 4000;
 
-//NB COME BACK TO THIS
 let Player = require("./playerModel");
 
 app.use(cors());

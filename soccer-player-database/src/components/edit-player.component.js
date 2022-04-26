@@ -79,6 +79,7 @@ export default class EditPlayer extends Component {
       player_team: this.state.player_team,
       player_dob: this.state.player_dob,
       player_position: this.state.player_position,
+      matches: this.state.matches,
     };
 
     console.log(obj);
