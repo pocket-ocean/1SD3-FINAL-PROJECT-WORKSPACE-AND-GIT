@@ -48,7 +48,6 @@ export default class EditPlayer extends Component {
   }
 
   //methods for updating the state properties
-
   onChangePlayerName(e) {
     this.setState({
       player_name: e.target.value,

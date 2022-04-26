@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//Potentially add a match array to the schema, what each field is:
-
 let Player = new Schema({
     player_name: {
         type: String
@@ -10,6 +8,7 @@ let Player = new Schema({
     player_team: {
         type: String
     },
+ 
 
     player_position: {
         type: String

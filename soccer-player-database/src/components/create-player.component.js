@@ -74,8 +74,6 @@ export default class CreatePlayer extends Component {
         player_dob: this.state.player_dob,
         matches: this.state.match
 
-
-
       }
 
 
@@ -83,7 +81,6 @@ export default class CreatePlayer extends Component {
 
 axios.post('http://localhost:4000/players/add', newPlayer)
             .then(res => console.log(res.data));
-
 
     this.setState({
       player_name: "",
