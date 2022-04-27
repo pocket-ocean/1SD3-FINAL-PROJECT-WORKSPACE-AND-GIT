@@ -239,12 +239,12 @@ const PassLineData = {
 
 //Conditional Rendering Analysis Functions
 
-function GoalConditionalCheck() {
+ function GoalConditionalCheck() {
   if (goalPercentage > overallGoalAverage) {
     return (
       <li>
         <h5>
-          This is better than the average of <b> {overallGoalAverage}%.</b>{" "}
+           <b> {overallGoalAverage}%.</b>{" "}
         </h5>
       </li>
     );
@@ -692,7 +692,7 @@ function SampleDetailPlayer() {
         </tbody>
       </table>
 
-      <div className="container">
+      <div className="container" data-testid="1stRow">
         <div className="row">
           <div className="col-sm-4">
             <h3>Total Goals and Goal Attempts</h3>

@@ -1,5 +1,5 @@
 import React from "react";
-import {render, screen, within} from '@testing-library/react'
+import {getByPlaceholderText, render, screen, within} from '@testing-library/react'
 import CreatePlayer from '../components/create-player.component'
 import App from '../App';
 
@@ -26,6 +26,15 @@ test('Checks that all current drop down optons are present, will need to be chec
     expect( options.length).toBe(7);
    
 }); 
+
+
+//This test passes! 
+test('Create player should render input element', async () => {
+        render(<CreatePlayer/>);
+           const inputElment = screen.getByPlaceholderText(/Enter Player Name/i)
+           expect(inputElment).toBeInTheDocument();
+    });
+
 
 // test('Renders a textbox for the user', async () => {
 //     render(<CreatePlayer/>);

@@ -132,28 +132,28 @@ export default class AddMatch extends Component {
               type="number"  min="0"
               className="form-control"
               value={this.state.goals}
-              onChange={this.onChangeGoals}
+              onChange={this.onChangeGoals} placeholder="enter number of goals scored this match"
               />
              
             </div>
             <div className="form-group">
             <label>Match Goal Attempts: </label>
             <input
-              type="number"  min="0"
-              className="form-control"/>
+              type="number"  min="0" 
+              className="form-control" placeholder="enter number of attempted goals this match"/>
             </div>
 
             <div className="form-group">
             <label>Match Passes: </label>
             <input
               type="number"  min="0"
-              className="form-control"/>
+              className="form-control" placeholder="enter number of successful passes this match"/>
             </div>
             <div className="form-group">
             <label>Match Pass Attempts: </label>
             <input
               type="number"  min="0"
-              className="form-control"/>
+              className="form-control" placeholder="enter number of pass attempts this match"/>
             </div>
 
             <div className="form-group">

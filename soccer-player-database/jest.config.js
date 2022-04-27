@@ -1,4 +1,4 @@
-module.exports = {
+ module.exports = {
     testPathIgnorePatterns: ['<rootDir>/node_modules', '<rootDir>/dist'], // might want?
     moduleNameMapper: {
       '@components(.*)': '<rootDir>/src/components$1' // might want?

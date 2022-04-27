@@ -107,6 +107,7 @@ axios.post('http://localhost:4000/players/add', newPlayer)
               className="form-control"
               value={this.state.player_name}
               onChange={this.onChangePlayerName}
+              placeholder="Enter Player Name"
             />
           </div>
           <div className="form-group">
