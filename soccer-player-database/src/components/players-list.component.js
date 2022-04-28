@@ -16,11 +16,10 @@ const Player = props => (
           <Link to={"/addmatch/"+props.player._id}>Add</Link>
       </td>
       <td>
-          <Link to={"/detail/"+props.player._id}>Data Vis</Link>
+          <Link to={"/datavis/"+props.player._id}>Data Vis</Link>
       </td>
   </tr>
 )
-
 
 
 

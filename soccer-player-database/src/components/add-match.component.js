@@ -57,7 +57,7 @@ export default class AddMatch extends Component {
           player_position: response.data.player_position,
           player_team: response.data.player_team,
           player_dob: response.data.player_dob,
-          matches: response.data.player_matches,
+          matches: response.data.matches,
         });
         console.log(this.state);
       })
@@ -103,7 +103,7 @@ export default class AddMatch extends Component {
       matches: this.state.matches,
     };
 
-    console.log(JSON.stringify(obj));
+    console.log("Stringify checking the object:" + JSON.stringify(obj));
 
     const match = {
       goals: this.state.goals,

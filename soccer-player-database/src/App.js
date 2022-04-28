@@ -6,8 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CreatePlayer from "./components/create-player.component";
 import AddMatch from "./components/add-match.component";
 import PlayersList from "./components/players-list.component";
-import SampleDetailPlayer from "./components/detail-player.component";
+import SampleDataVis from "./components/sample-data-vis.component";
 import EditPlayer from "./components/edit-player.component";
+import DataVis from "./components/data-visualization.component";
 
 class App extends Component {
   render() {
@@ -26,7 +27,7 @@ class App extends Component {
                   <Link to="/create" className="nav-link">Create Player</Link>
                 </li>
                 <li className="navbar-item">
-                  <Link to="/chart" className="nav-link">Sample Player Datavisualization</Link>
+                  <Link to="/sampledatavis" className="nav-link">Sample Player Datavisualization</Link>
                 </li>
               </ul>
             </div>
@@ -36,8 +37,9 @@ class App extends Component {
           <Route path="/" element={<PlayersList/>}/>
           <Route path="/create" element={<CreatePlayer/>} />
           <Route path="/edit/:id" element={<EditPlayer/>} />
-          <Route path="/AddMatch/:id" element={<AddMatch/>} />
-          <Route path="/chart/" element={<SampleDetailPlayer/>} />
+          <Route path="/addmatch/:id" element={<AddMatch/>} />
+          <Route path="/datavis/:id" element = {<DataVis/>}/>
+          <Route path="/sampledatavis/" element={<SampleDataVis/>} />
          
           </Routes>
         </div>
