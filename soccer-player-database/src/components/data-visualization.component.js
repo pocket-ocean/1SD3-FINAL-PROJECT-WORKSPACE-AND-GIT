@@ -87,11 +87,24 @@ componentDidMount() {
         matches: response.data.matches,
       });
       console.log(this.state);
+      console.log(this.state.matches)
+
     })
 
     .catch(function (error) {
       console.log(error);
     });
+
+    const obj = {
+
+  player_name: this.state.player_name,
+  player_team: this.state.player_team,
+  player_dob: this.state.player_dob,
+  player_position: this.state.player_position,
+  matches: this.state.matches,
+
+}
+
 }
 
 
@@ -121,6 +134,12 @@ render(){
     </tr>
   </tbody>
 </table>
+
+<li>
+
+<ul>This in their first match this player has scored {this.state.matches.length} goals! </ul>
+
+</li>
 </div>
   )
 

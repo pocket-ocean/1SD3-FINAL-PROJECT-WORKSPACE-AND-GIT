@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 
 //Gets the url id for the get method, slicing "/edit/" out of the result
-var idToBeSliced = window.location.pathname;
-const id = idToBeSliced.substring(10);
+let idToBeSliced = window.location.pathname;
+let id = idToBeSliced.substring(10);
 console.log(idToBeSliced);
 console.log(id);
 
@@ -41,7 +41,7 @@ export default class AddMatch extends Component {
       "Checking current state:" +
         JSON.stringify(this.state) +
         " this has an array of length " +
-        this.state.matches.length
+        this.state.matches.length 
     );
   }
   
@@ -95,6 +95,8 @@ export default class AddMatch extends Component {
   onSubmit(e) {
     e.preventDefault();
 
+    if(this.state.goals <= this.state.goalAttempts && this.state.passes <= this.state.passAttempts){
+
     const obj = {
       player_name: this.state.player_name,
       player_team: this.state.player_team,
@@ -139,7 +141,9 @@ export default class AddMatch extends Component {
     };
 
     this.props.history.push("/");
+  }
 
+  else  alert("Goals and Passes must be the samme or less than Goal Attempts and Pass Attempts!")
     //Adding the match to the state object
   }
 

@@ -20,18 +20,18 @@ let Player = new Schema({
         matches:[
             {
           
-              Goals: {
+              goals: {
                 type: Number,
               },
-              GoalAttempts: {
-                type: Number,
-              },
-          
-              Passes: {
+              goalAttempts: {
                 type: Number,
               },
           
-              PassAttempts: {
+              passes: {
+                type: Number,
+              },
+          
+              passAttempts: {
                 type: Number,
               },
             }
