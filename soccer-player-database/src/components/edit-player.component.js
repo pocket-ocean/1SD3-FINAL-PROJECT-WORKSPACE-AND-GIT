@@ -33,9 +33,11 @@ export default class EditPlayer extends Component {
 
     if(this.props.match && this.props.match.params.id){
 
-      const id = this.props.match.params.id
+      const id = this.props.match.params.id;
+      console.log(id);
  axios
-        .get("http://localhost:4000/players/" + {id} )
+        .get("http://localhost:4000/players/" + {id} ) 
+        
         .then(response => {
           this.setState({
             player_name: response.data.player_name,
@@ -43,16 +45,17 @@ export default class EditPlayer extends Component {
             player_team: response.data.player_team,
             player_dob: response.data.player_dob,
             matches: response.data.player_matches,
-          });    
+          });   
         })
       
         .catch(function (error) {
           console.log(error);
-        });          
+          
+        });    
+   
   }
 
-console.log("Logging the returned object:" + this.state.player_name)
-
+ // console.log("Player object gotten from mongodb:" + JSON.stringify(this.state)) 
 }
   //methods for updating the state properties
   onChangePlayerName(e) {
@@ -89,8 +92,8 @@ console.log("Logging the returned object:" + this.state.player_name)
       matches: this.state.matches,
     };
 
-    console.log("Logging the updated object:" + obj);
 
+    console.log(JSON.stringify(obj))
   
     if(this.props.match && this.props.match.params.id){
 
