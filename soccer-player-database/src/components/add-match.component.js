@@ -95,8 +95,6 @@ export default class AddMatch extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    if(this.state.goals <= this.state.goalAttempts && this.state.passes <= this.state.passAttempts){
-
     const obj = {
       player_name: this.state.player_name,
       player_team: this.state.player_team,
@@ -141,16 +139,14 @@ export default class AddMatch extends Component {
     };
 
     this.props.history.push("/");
-  }
 
-  else  alert("Goals and Passes must be the samme or less than Goal Attempts and Pass Attempts!")
-    //Adding the match to the state object
   }
 
   render() {
     return (
       <div style={{ marginTop: 10 }}>
         <h3>Add a match to {this.state.player_name}: </h3>
+        <p>Please note that goal and passes cannot be greater than their respective attempt values, that breaks the data visualization!</p>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Match Goals: </label>
