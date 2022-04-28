@@ -22,6 +22,8 @@ const Player = props => (
 )
 
 
+
+
 export default class PlayersList extends Component {
 
   constructor(props) {
@@ -30,9 +32,12 @@ export default class PlayersList extends Component {
   }
 
   componentDidMount() {
+
+    
       axios.get('http://localhost:4000/players/')
-          .then(response => {
-              this.setState({ players: response.data });
+          .then((response) => {
+              this.setState({ players: response.data 
+           });
           })
           .catch(function (error){
               console.log(error);

@@ -19,9 +19,7 @@ let Player = new Schema({
 
         matches:[
             {
-              MatchID: {
-                  type: String,
-              },
+          
               Goals: {
                 type: Number,
               },

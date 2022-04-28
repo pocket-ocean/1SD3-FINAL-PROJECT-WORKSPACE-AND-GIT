@@ -8,7 +8,7 @@ import App from '../App';
 //checks for presence of a navbar
 
 //this test passes!
-test('Renders a heading for the user', async () => {
+test('Renders a navbar for the user', async () => {
     render(<App/>);
     const navbar = screen.getByRole("navigation");
     expect( navbar).toBeInTheDocument();

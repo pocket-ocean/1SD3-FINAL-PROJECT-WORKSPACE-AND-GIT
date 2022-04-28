@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import { TimeScale } from "chart.js";
+
+//Gets the url id for the get method, slicing "/edit/" out of the result
+var idToBeSliced = window.location.pathname;
+const id = idToBeSliced.substring(6);
+console.log(idToBeSliced);
+console.log(id);
 
 export default class EditPlayer extends Component {
   constructor(props) {
@@ -25,38 +31,31 @@ export default class EditPlayer extends Component {
 
       matches: [],
     };
-
-    //bindings
+    console.log("Checking current state:" + JSON.stringify(this.state) + " this has an array of length " + this.state.matches.length)
   }
 
   componentDidMount() {
 
-    if(this.props.match && this.props.match.params.id){
 
-      const id = this.props.match.params.id;
-      console.log(id);
- axios
-        .get("http://localhost:4000/players/" + {id} ) 
-        
-        .then(response => {
-          this.setState({
-            player_name: response.data.player_name,
-            player_position: response.data.player_position,
-            player_team: response.data.player_team,
-            player_dob: response.data.player_dob,
-            matches: response.data.player_matches,
-          });   
-        })
-      
-        .catch(function (error) {
-          console.log(error);
-          
-        });    
-   
+    //console.log("url id" +  id );
+    axios
+      .get("http://localhost:4000/players/" + id)
+
+      .then((response) => {
+        this.setState({
+          player_name: response.data.player_name,
+          player_position: response.data.player_position,
+          player_team: response.data.player_team,
+          player_dob: response.data.player_dob,
+          matches: response.data.matches,
+        }); console.log(this.state)
+      }, )
+
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
- // console.log("Player object gotten from mongodb:" + JSON.stringify(this.state)) 
-}
   //methods for updating the state properties
   onChangePlayerName(e) {
     this.setState({
@@ -92,22 +91,15 @@ export default class EditPlayer extends Component {
       matches: this.state.matches,
     };
 
+    console.log("Checking edit player:" + JSON.stringify(obj) + " this player has an array of " + obj.matches.length);
 
-    console.log(JSON.stringify(obj))
-  
-    if(this.props.match && this.props.match.params.id){
-
-      const id = this.props.match.params.id
     axios
-      .post(
-        "http://localhost:4000/players/update/" + {id},
-        obj
-      )
+      .post("http://localhost:4000/players/update/" + id, obj)
       .then((res) => console.log(res.data));
 
     this.props.history.push("/");
   }
-  }
+
   render() {
     return (
       <div>
