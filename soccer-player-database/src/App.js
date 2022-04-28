@@ -35,6 +35,7 @@ class App extends Component {
           <Routes>
           <Route path="/" element={<PlayersList/>}/>
           <Route path="/create" element={<CreatePlayer/>} />
+          <Route path="/edit/:id" element={<EditPlayer/>} />
           <Route path="/AddMatch/:id" element={<AddMatch/>} />
           <Route path="/chart/" element={<SampleDetailPlayer/>} />
          

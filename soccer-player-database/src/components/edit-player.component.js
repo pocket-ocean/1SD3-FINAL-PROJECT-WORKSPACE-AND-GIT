@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link, useParams } from 'react-router-dom';
-
+import { Link, useParams } from "react-router-dom";
+import { TimeScale } from "chart.js";
 
 export default class EditPlayer extends Component {
-  
   constructor(props) {
     super(props);
 
-    //bindings
     this.onChangePlayerName = this.onChangePlayerName.bind(this);
     this.onChangePlayerTeam = this.onChangePlayerTeam.bind(this);
     this.onChangePlayerPosition = this.onChangePlayerPosition.bind(this);
     this.onChangePlayerDob = this.onChangePlayerDob.bind(this);
-
     this.onSubmit = this.onSubmit.bind(this);
 
     //initalizting state
@@ -28,25 +25,35 @@ export default class EditPlayer extends Component {
 
       matches: [],
     };
+
+    //bindings
   }
 
   componentDidMount() {
-    axios
-      .get("http://localhost:4000/players/" + this.props.match.params.id)
-      .then(response => {
-        this.setState({
-          player_name: response.data.player_name,
-          player_position: response.data.player_position,
-          player_team: response.data.player_team,
-          player_dob: response.data.player_dob,
-          matches: response.data.player_dob,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
+    if(this.props.match && this.props.match.params.id){
+
+      const id = this.props.match.params.id
+ axios
+        .get("http://localhost:4000/players/" + {id} )
+        .then(response => {
+          this.setState({
+            player_name: response.data.player_name,
+            player_position: response.data.player_position,
+            player_team: response.data.player_team,
+            player_dob: response.data.player_dob,
+            matches: response.data.player_matches,
+          });    
+        })
+      
+        .catch(function (error) {
+          console.log(error);
+        });          
   }
 
+console.log("Logging the returned object:" + this.state.player_name)
+
+}
   //methods for updating the state properties
   onChangePlayerName(e) {
     this.setState({
@@ -82,32 +89,39 @@ export default class EditPlayer extends Component {
       matches: this.state.matches,
     };
 
-    console.log(obj);
+    console.log("Logging the updated object:" + obj);
 
+  
+    if(this.props.match && this.props.match.params.id){
+
+      const id = this.props.match.params.id
     axios
       .post(
-        "http://localhost:4000/players/update/" + this.props.match.params.id,
+        "http://localhost:4000/players/update/" + {id},
         obj
       )
       .then((res) => console.log(res.data));
 
     this.props.history.push("/");
   }
-
+  }
   render() {
     return (
-        <div>
-            <h3 align="center">Update Player</h3>
-            <form onSubmit={this.onSubmit}>
-                <div className="form-group"> 
-                    <label>Player Name: </label>
-                    <input  type="text"
-                            className="form-control"
-                            value={this.state.player_name}
-                            onChange={this.onChangePlayerName}
-                            />
-                </div>
-                <div className="form-group">
+      <div>
+        {" "}
+        <h3> This is where you edit or update player information: </h3>
+        <h3 align="center">Update Player</h3>
+        <form onSubmit={this.onSubmit}>
+          <div className="form-group">
+            <label>Player Name: </label>
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.player_name}
+              onChange={this.onChangePlayerName}
+            />
+          </div>
+          <div className="form-group">
             <label for="player_team">Player Team:</label>
             <select
               id="player_team"
@@ -145,17 +159,15 @@ export default class EditPlayer extends Component {
             ></input>
           </div>
 
-            
-                
-                <div className="form-group">
+          <div className="form-group">
             <input
               type="submit"
-              value="Create Player"
+              value="Update Player"
               className="btn btn-primary"
             />
           </div>
-            </form>
-        </div>
-    )
-}
+        </form>
+      </div>
+    );
+  }
 }

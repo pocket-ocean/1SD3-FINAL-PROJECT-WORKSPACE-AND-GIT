@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
 
-
 const Player = props => (
   <tr>
       <td>{props.player.player_name}</td>
@@ -11,10 +10,13 @@ const Player = props => (
       <td>{props.player.player_team}</td>
       <td>{props.player.matches.length}</td>
       <td>
-          <Link to={"/addmatch/"+props.player._id}>Add Matches</Link>
+          <Link to={"/edit/"+props.player._id}>Edit</Link>
       </td>
       <td>
-          <Link to={"/detail/"+props.player._id}>Detail</Link>
+          <Link to={"/addmatch/"+props.player._id}>Add</Link>
+      </td>
+      <td>
+          <Link to={"/detail/"+props.player._id}>Data Vis</Link>
       </td>
   </tr>
 )
@@ -54,7 +56,7 @@ export default class PlayersList extends Component {
                           <th>Position</th>
                           <th>Team</th>
                           <th>No of Matches Played</th>
-                    
+                          <th>Edit Player Info</th>
                           <th>Add Matches</th>
                           <th>View Player Data Visualization</th>
                       </tr>

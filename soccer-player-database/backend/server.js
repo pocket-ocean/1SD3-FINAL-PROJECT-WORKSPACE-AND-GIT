@@ -64,11 +64,11 @@ playerRoutes.route("/update/:id").post(function(req, res) {
 
     player
       .save()
-      .then((player) => {
-        res.json("Player updated!");
+      .then(player => {
+        res.json("Player Updated!");
       })
       .catch((err) => {
-        res.status(400).send("Update not possible");
+        res.status(400).send("Edit not possible");
       });
   });
 });
