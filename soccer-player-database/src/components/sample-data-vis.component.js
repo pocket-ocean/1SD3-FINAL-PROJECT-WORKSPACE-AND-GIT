@@ -667,7 +667,7 @@ function PassAttemptsAverageConditional() {
 }
 
 //Encompasing Component
-function SampleDetailPlayer() {
+function SampleDataVis() {
   return (
     <div>
       <h3>Sample Player Data Vis</h3>
@@ -882,4 +882,4 @@ function SampleDetailPlayer() {
   );
 }
 
-export default SampleDetailPlayer;
+export default SampleDataVis;

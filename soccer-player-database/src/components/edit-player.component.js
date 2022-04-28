@@ -31,12 +31,15 @@ export default class EditPlayer extends Component {
 
       matches: [],
     };
-    console.log("Checking current state:" + JSON.stringify(this.state) + " this has an array of length " + this.state.matches.length)
+    console.log(
+      "Checking current state:" +
+        JSON.stringify(this.state) +
+        " this has an array of length " +
+        this.state.matches.length
+    );
   }
 
   componentDidMount() {
-
-
     //console.log("url id" +  id );
     axios
       .get("http://localhost:4000/players/" + id)
@@ -48,8 +51,9 @@ export default class EditPlayer extends Component {
           player_team: response.data.player_team,
           player_dob: response.data.player_dob,
           matches: response.data.matches,
-        }); console.log(this.state)
-      }, )
+        });
+        console.log(this.state);
+      })
 
       .catch(function (error) {
         console.log(error);
@@ -91,7 +95,12 @@ export default class EditPlayer extends Component {
       matches: this.state.matches,
     };
 
-    console.log("Checking edit player:" + JSON.stringify(obj) + " this player has an array of " + obj.matches.length);
+    console.log(
+      "Checking edited player:" +
+        JSON.stringify(obj) +
+        " this player has an array of " +
+        obj.matches.length
+    );
 
     axios
       .post("http://localhost:4000/players/update/" + id, obj)
