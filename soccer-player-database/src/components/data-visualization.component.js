@@ -157,8 +157,129 @@ var goalPercentage = Math.floor(
 
 console.log("Goal Percentage: " + goalPercentage)
 
+//Creating an Array of Passess
+const passArray = [];
 
-//Breaking down
+for (let i = 0; i < obj.matches.length; i++) {
+  passArray.push(obj.matches[i].passes);
+}
+
+//Summing this Array of Passes
+
+var passTotal = 0;
+
+for (let i = 0; i < passArray.length; i++) {
+  passTotal += passArray[i];
+}
+
+console.log("Pass Array: " + passArray)
+console.log("Pass Total: " + passTotal)
+
+//Creating an Array of Pass Attempts
+
+const passAttemptsArray = [];
+
+for (let i = 0; i < obj.matches.length; i++) {
+  passAttemptsArray.push(obj.matches[i].passAttempts);
+}
+
+//Summing this Array of Pass Attempts
+
+var passAttemptsTotal = 0;
+
+for (let i = 0; i < passAttemptsArray.length; i++) {
+  passAttemptsTotal += passAttemptsArray[i];
+}
+
+console.log("Pass Attempts Array:" + passAttemptsArray)
+console.log("Pass Total: " + passAttemptsTotal)
+
+var passPercentage = Math.floor(
+  (passTotal / (passAttemptsTotal + passTotal)) * 100
+);
+
+console.log("Pass Percentage: " + passPercentage)
+
+//Generating GoalPie Data
+
+const GoalPieData = {
+  labels: ["Goals", "Goal Attempts"],
+  datasets: [
+    {
+      label: "Goals and Goal Attempts",
+      backgroundColor: ["#B21F00", "#C9DE00"],
+      hoverOffset: 4,
+      data: [goalTotal, goalAttemptsTotal],
+    },
+  ],
+};
+
+//Generating PassPie Data
+
+const PassPieData = {
+  labels: ["Passes", "Pass Attempts"],
+
+  datasets: [
+    {
+      label: "Passes and Pass Attempts",
+      backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
+      hoverOffset: 4,
+
+      data: [passTotal, passAttemptsTotal],
+    },
+  ],
+};
+
+//Creating an Array of Labels for substituting into line charts:
+
+const goalLabelArray = [];
+
+for (let i = 0; i < obj.matches.length; i++) {
+  goalLabelArray.push("M" + (i + 1));
+}
+
+//Line chart data Goals
+
+const GoalLineData = {
+  labels: goalLabelArray,
+  datasets: [
+    {
+      label: "Goals",
+      data: goalArray,
+      fill: true,
+      backgroundColor: "rgba(75,192,192,0.2)",
+      borderColor: "#B21F00",
+    },
+    {
+      label: "Attempted Goals",
+      data: goalAttemptsArray,
+      fill: false,
+      borderColor: "#C9DE00",
+    },
+  ],
+};
+
+//Line chart data Passes
+
+const PassLineData = {
+  labels: goalLabelArray,
+  datasets: [
+    {
+      label: "Passes",
+      data: passArray,
+      fill: true,
+      backgroundColor: "rgba(75,192,192,0.2)",
+      borderColor: "rgb(255, 99, 132)",
+    },
+    {
+      label: "Attempted Passes",
+      data: passAttemptsArray,
+      fill: false,
+      borderColor: "rgb(54, 162, 235)",
+    },
+  ],
+};
+
 
 
     return (
@@ -187,7 +308,7 @@ console.log("Goal Percentage: " + goalPercentage)
 
         <li>
           <ul>
-            This in their first match this player has scored!
+            {obj.player_name} has scored {goalTotal} goals so far.
           </ul>
         </li>
       </div>
