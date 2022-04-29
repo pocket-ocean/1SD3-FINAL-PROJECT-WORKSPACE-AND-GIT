@@ -589,7 +589,7 @@ function PassingAccuracyTrendsCheck() {
             passAccuracyAttemptsPositiveTrend /
               PassingAccuracyTrendsArray.length
           )}{" "}
-          less Passes.{" "}
+          less Pass(es).{" "}
         </h4>
       </li>
     );
