@@ -156,7 +156,23 @@ export default class AddMatch extends Component {
   }
 
   else alert ("Note! Goals and Passes must be less than or equal to their respective attempt values!")
-  
+  this.state = {
+    player_name: "",
+
+    player_team: "",
+
+    player_dob: "",
+
+    player_position: "",
+
+    matches: [],
+
+    goals: "",
+    goalAttempts: "",
+    passes: "",
+    passAttempts: "",
+  };
+
   
 }
   render() {

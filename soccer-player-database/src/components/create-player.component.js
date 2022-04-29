@@ -93,6 +93,9 @@ axios.post('http://localhost:4000/players/add', newPlayer)
 
       matches: [],
     });
+
+    alert("New Player Created!: " +  newPlayer.player_name)
+  
   }
 
   render() {
