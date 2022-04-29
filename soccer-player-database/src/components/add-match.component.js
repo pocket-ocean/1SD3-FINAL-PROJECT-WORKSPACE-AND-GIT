@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { withRouter } from "react-router";
 
 
 //Gets the url id for the get method, slicing "/edit/" out of the result
@@ -44,9 +45,8 @@ export default class AddMatch extends Component {
         " this has an array of length " +
         this.state.matches.length 
     );
-  }
-  
 
+  }
   componentDidMount() {
     //console.log("url id" +  id );
     axios
@@ -67,6 +67,9 @@ export default class AddMatch extends Component {
         console.log(error);
       });
   }
+
+  
+
 
   //methods for updating the state properties
   onChangeGoals(e) {
@@ -96,6 +99,13 @@ export default class AddMatch extends Component {
   onSubmit(e) {
     e.preventDefault();
 
+    console.log("Goals" + this.state.goals);
+    console.log("Goal Attempts" + this.state.goalAttempts);
+    console.log("Passes" + this.state.passes);
+    console.log("Pass Attempts" + this.state.passAttempts);
+
+    
+    if(this.state.goals <= this.state.goalAttempts && this.state.passes <= this.state.passAttempts){
     //input validation on goal sumission
 
     const obj = {
@@ -114,7 +124,6 @@ export default class AddMatch extends Component {
       passes: this.state.passes,
       passAttempts: this.state.passAttempts,
     };
-    console.log(match);
 
     //Adding match to matches array
     obj.matches.push(match);
@@ -142,10 +151,14 @@ export default class AddMatch extends Component {
   
     alert("Match added to: " + obj.player_name)
 
-    //this.props.}history.push("/");
-  
+    this.props.history.push("/");
+
   }
 
+  else alert ("Note! Goals and Passes must be less than or equal to their respective attempt values!")
+  
+  
+}
   render() {
     
     return (
@@ -162,6 +175,7 @@ export default class AddMatch extends Component {
               value={this.state.goals}
               onChange={this.onChangeGoals}
               placeholder="enter number of goals scored this match"
+              required
             />
           </div>
           <div className="form-group">
@@ -173,6 +187,7 @@ export default class AddMatch extends Component {
               value={this.state.goalAttempts}
               onChange={this.onChangeGoalAttempts}
               placeholder="enter number of attempted goals this match"
+              required
             />
           </div>
 
@@ -185,6 +200,7 @@ export default class AddMatch extends Component {
               value={this.state.passes}
               onChange={this.onChangePasses}
               placeholder="enter number of successful passes this match"
+              required
             />
           </div>
           <div className="form-group">
@@ -196,6 +212,7 @@ export default class AddMatch extends Component {
               value={this.state.passAttempts}
               onChange={this.onChangePassAttempts}
               placeholder="enter number of pass attempts this match"
+              required
             />
           </div>
 
