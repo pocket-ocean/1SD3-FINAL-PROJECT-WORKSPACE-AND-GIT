@@ -10,7 +10,7 @@ import SampleDataVis from "./components/sample-data-vis.component";
 import EditPlayer from "./components/edit-player.component";
 import DataVis from "./components/data-visualization.component";
 
-//This App is what is sent to index.js
+//This <App/> is what is sent to index.js
 class App extends Component {
   render() {
     return (
