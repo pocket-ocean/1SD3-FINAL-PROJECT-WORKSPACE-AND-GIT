@@ -8,7 +8,7 @@ const Player = props => (
       <td>{props.player.player_name}</td>
       <td className="d-none d-sm-table-cell">{props.player.player_position}</td>
       <td>{props.player.player_team}</td>
-      <td className="d-none d-sm-table-cell" >{props.player.matches.length}</td>
+      <td className="d-none d-sm-table-cell"  className="text-center">{props.player.matches.length}</td>
       <td>
           <Link to={"/edit/"+props.player._id}>Edit</Link>
       </td>

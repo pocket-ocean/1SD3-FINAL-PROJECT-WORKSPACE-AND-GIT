@@ -104,7 +104,7 @@ axios.post('http://localhost:4000/players/add', newPlayer)
         <h3>Create New Player</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Player Name: </label>
+            <label>Player Name: </label> 
             <input
               type="text"
               className="form-control"
@@ -113,6 +113,7 @@ axios.post('http://localhost:4000/players/add', newPlayer)
               placeholder="Enter Player Name"
             />
           </div>
+          <br></br>
           <div className="form-group">
             <label for="player_team">Player Team:</label>
             <select
@@ -128,7 +129,7 @@ axios.post('http://localhost:4000/players/add', newPlayer)
               <option value="Roscommon Bears">Roscommon Bears</option>
             </select>
           </div>
-
+          <br></br>
           <div className="form-group">
             <label for="player_position">Player Position:</label>
             <select
@@ -141,6 +142,7 @@ axios.post('http://localhost:4000/players/add', newPlayer)
               <option value="Centre Forward">Centre Forward</option>
             </select>
           </div>
+          <br></br>
 
           <div className="form-group">
             <label for="player_position">Player Dob:</label>
@@ -152,7 +154,7 @@ axios.post('http://localhost:4000/players/add', newPlayer)
               onChange={this.onChangePlayerDob}
             ></input>
           </div>
-
+          <br></br>
           <div className="form-group">
             <input
               type="submit"
