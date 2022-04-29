@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+
 //Gets the url id for the get method, slicing "/edit/" out of the result
 let idToBeSliced = window.location.pathname;
 let id = idToBeSliced.substring(10);
@@ -95,6 +96,8 @@ export default class AddMatch extends Component {
   onSubmit(e) {
     e.preventDefault();
 
+    //input validation on goal sumission
+
     const obj = {
       player_name: this.state.player_name,
       player_team: this.state.player_team,
@@ -105,7 +108,7 @@ export default class AddMatch extends Component {
 
     console.log("Stringify checking the object:" + JSON.stringify(obj));
 
-    const match = {
+    const match = {   
       goals: this.state.goals,
       goalAttempts: this.state.goalAttempts,
       passes: this.state.passes,
@@ -120,29 +123,31 @@ export default class AddMatch extends Component {
     axios
       .post("http://localhost:4000/players/update/" + id, obj)
       .then((res) => console.log(res.data));
+      this.state = {
+        player_name: "",
+  
+        player_team: "",
+  
+        player_dob: "",
+  
+        player_position: "",
+  
+        matches: [],
+  
+        goals: "",
+        goalAttempts: "",
+        passes: "",
+        passAttempts: "",
+      };
+  
+    alert("Match added to: " + obj.player_name)
 
-    this.state = {
-      player_name: "",
-
-      player_team: "",
-
-      player_dob: "",
-
-      player_position: "",
-
-      matches: [],
-
-      goals: "",
-      goalAttempts: "",
-      passes: "",
-      passAttempts: "",
-    };
-
-    this.props.history.push("/");
-
+    //this.props.}history.push("/");
+  
   }
 
   render() {
+    
     return (
       <div style={{ marginTop: 10 }}>
         <h3>Add a match to {this.state.player_name}: </h3>

@@ -523,12 +523,11 @@ function GoalAccuracyTrendsCheck() {
     return (
       <li>
         <h4>
-          This player is getting less accurate at scoring goals over time. They
-          are worsening at an average rate of{" "}
+          This player is getting less accurate at scoring goals over time. For every goal they score, they make{" "}
           {Math.floor(
             goalAccuracyAttemptsPositiveTrend / GoalAccuracyTrendsArray.length
           )}{" "}
-          goal attempts a match.{" "}
+          more goal attempts.{" "}
         </h4>
       </li>
     );
@@ -538,21 +537,22 @@ function GoalAccuracyTrendsCheck() {
     return (
       <li>
         <h4>
-          This player is getting more accurate at scoring goals over time. They
-          are improving at an average rate of{" "}
+          This player is getting more accurate at scoring goals over time. For every goal they score, they make 
+          {" "}
           {Math.floor(
             goalAccuracyAttemptsNegativeTrend / GoalAccuracyTrendsArray.length
           )}{" "}
-          goals a match.
+          less goal attempts.
         </h4>
       </li>
     );
-  } else
+  } else if ( goalAccuracyAttemptsPositiveTrend == goalAccuracyAttemptsNegativeTrend){
     return (
       <li>
         <h4>This player is not getting more or less accurate over time. </h4>
       </li>
     );
+  }
 }
 
 //Checking if the player is passing more accuractly over time
@@ -593,11 +593,10 @@ function PassingAccuracyTrendsCheck() {
     return (
       <li>
         <h4>
-          This player is getting more accurate at passing over time. They are
-          improving at an average rate of{" "}
+          This player is getting more accurate at passing over time. For each accurate Pass, they make on average make {" "}
           {passAccuracyAttemptsNegativeTrend /
             PassingAccuracyTrendsArray.length}{" "}
-          accurate passes a match.{" "}
+          less Passing Attempts.{" "}
         </h4>
       </li>
     );
@@ -607,13 +606,12 @@ function PassingAccuracyTrendsCheck() {
     return (
       <li>
         <h4>
-          This player is getting less accurate at passing over time. They are
-          worsening at an average rate of{" "}
+          This player is getting less accurate at passing over time. For each accurate pass, they on average make {" "}
           {Math.floor(
             passAccuracyAttemptsPositiveTrend /
               PassingAccuracyTrendsArray.length
           )}{" "}
-          pass attempt(s) a match.{" "}
+          less Passes.{" "}
         </h4>
       </li>
     );
