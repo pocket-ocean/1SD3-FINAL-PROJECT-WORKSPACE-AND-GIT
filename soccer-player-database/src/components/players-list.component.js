@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import axios from 'axios';
 
-
+//Populates the table data for each player in the database
 const Player = props => (
   <tr>
       <td>{props.player.player_name}</td>
@@ -24,12 +24,12 @@ const Player = props => (
 
 
 export default class PlayersList extends Component {
-
+//initializes this state with an empty players array
   constructor(props) {
       super(props);
       this.state = {players: []};
   }
-
+//get request for all players, that sets this array in state to the returned player objects
   componentDidMount() {
 
     
@@ -43,12 +43,13 @@ export default class PlayersList extends Component {
           })
   }
 
+  //maps through each player and returns table data for each
   playerList() {
       return this.state.players.map(function(currentPlayer, i){
           return <Player player={currentPlayer} key={i} />;
       })
   }
-
+//what the player sees including links
   render() {
       return (
           <div>

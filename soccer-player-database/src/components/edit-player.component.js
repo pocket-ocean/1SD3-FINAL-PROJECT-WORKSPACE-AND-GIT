@@ -13,13 +13,14 @@ export default class EditPlayer extends Component {
   constructor(props) {
     super(props);
 
+    //binding change events
     this.onChangePlayerName = this.onChangePlayerName.bind(this);
     this.onChangePlayerTeam = this.onChangePlayerTeam.bind(this);
     this.onChangePlayerPosition = this.onChangePlayerPosition.bind(this);
     this.onChangePlayerDob = this.onChangePlayerDob.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-    //initalizting state
+    //initalizting state fields for storying the returned player object
     this.state = {
       player_name: "",
 
@@ -40,7 +41,7 @@ export default class EditPlayer extends Component {
   }
 
   componentDidMount() {
-    //console.log("url id" +  id );
+    //GET request using the id gotten using window.location.pathname
     axios
       .get("http://localhost:4000/players/" + id)
 
@@ -84,9 +85,11 @@ export default class EditPlayer extends Component {
       player_position: e.target.value,
     });
   }
-
+  //when the update player button is pressed
   onSubmit(e) {
     e.preventDefault();
+
+    //creating the updated player object
     const obj = {
       player_name: this.state.player_name,
       player_team: this.state.player_team,
@@ -101,14 +104,16 @@ export default class EditPlayer extends Component {
         " this player has an array of " +
         obj.matches.length
     );
-console.log("Player- " + obj.player_name + " - created!")
+    console.log("Player- " + obj.player_name + " - created!");
+
+    //posting the updated player object using the id and sending the object
     axios
       .post("http://localhost:4000/players/update/" + id, obj)
       .then((res) => console.log(res.data));
 
     this.props.history.push("/");
   }
-
+  //what is shown to the user and the form they enter and submit
   render() {
     return (
       <div>
