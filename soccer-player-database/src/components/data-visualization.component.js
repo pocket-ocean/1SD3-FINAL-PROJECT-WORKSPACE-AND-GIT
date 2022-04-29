@@ -611,7 +611,7 @@ function PassingAccuracyTrendsCheck() {
             passAccuracyAttemptsPositiveTrend /
               PassingAccuracyTrendsArray.length
           )}{" "}
-          less Passes.{" "}
+          less Pass(es).{" "}
         </h4>
       </li>
     );
@@ -641,7 +641,7 @@ function PerMatchGoalConditional() {
     return (
       <li>
         This is <b>worse</b> than the average rate of{" "}
-        {overallGoalAveragePerMatch} goals per match{" "}
+        {overallGoalAveragePerMatch} goals per match.{" "}
       </li>
     );
   } else return <li>This is the average performance.</li>;
@@ -655,7 +655,7 @@ function PerMatchGoalAttemptConditional() {
     return (
       <li>
         This is <b>better</b> than the average rate of{" "}
-        {overallGoalAverageAttemptPerMatch} goals per match{" "}
+        {overallGoalAverageAttemptPerMatch} goals per match.{" "}
       </li>
     );
   } else if (
@@ -665,7 +665,7 @@ function PerMatchGoalAttemptConditional() {
     return (
       <li>
         This is <b>worse</b> than the average rate of{" "}
-        {overallGoalAverageAttemptPerMatch} goals per match{" "}
+        {overallGoalAverageAttemptPerMatch} goals per match.{" "}
       </li>
     );
   } else return <li>This is the average performance.</li>;
