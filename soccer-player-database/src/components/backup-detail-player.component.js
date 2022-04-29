@@ -44,8 +44,6 @@ const playerObject1 = {
   passAttempts: [30, 29, 20, 15],
 };
 
-
-
 //tallying goals
 var goalTotal = 0;
 for (let h = 0; h < playerObject1.goals.length; h++) {
@@ -126,7 +124,7 @@ var overallGoalAverage = 25;
 
 var overallPassAverage = 35;
 
-//Conditional Rendering
+//Conditional Rendering based on collected variables
 function GoalConditionalCheck() {
   if (goalPercentage > overallGoalAverage) {
     return (
@@ -161,7 +159,7 @@ function PassConditionalCheck() {
     );
 }
 
-//Line chart data
+//Line chart data, takes in
 
 const GoalLineData = {
   labels: ["M1", "M2", "M3", "M4"],
@@ -216,43 +214,36 @@ const PassLineData = {
         playerObject1.passAttempts[3],
       ],
       fill: false,
-      borderColor:"rgb(54, 162, 235)",
+      borderColor: "rgb(54, 162, 235)",
     },
   ],
 };
 
-
 //GoalTrendConditionalCheck
 
-function GoalTrendConditionalCheck ()
-{
-
+function GoalTrendConditionalCheck() {
   return (
-
-    <li>This will assess sucessful goals over time, they are either increasing or decreasing, and if the player's attempted goals are trending up or down over time. </li>
-
-    )
-
-};
-
-
-
+    <li>
+      This will assess sucessful goals over time, they are either increasing or
+      decreasing, and if the player's attempted goals are trending up or down
+      over time.{" "}
+    </li>
+  );
+}
 
 //PassTrendConditionalCheck
 
-
-function PassTrendConditionalCheck(){
-
+function PassTrendConditionalCheck() {
   return (
+    <li>
+      This will assess sucessful passes over time, they are either increasing or
+      decreasing, and if the player's attempted passess are trending up or down
+      over time.{" "}
+    </li>
+  );
+}
 
-    <li>This will assess sucessful passes over time, they are either increasing or decreasing, and if the player's attempted passess are trending up or down over time. </li>
-
-    )
-
-};
-
-
-// What is shown to the user! 
+// What is shown to the user!
 
 function SampleDetailPlayer() {
   return (
@@ -297,14 +288,10 @@ function SampleDetailPlayer() {
             />
           </div>
 
-          
           <div className="col-sm-4">
             <h3>Goals and Attempts Over Time</h3>
             <Line data={GoalLineData} />
           </div>
-
-
-
 
           <div className="col-sm-4">
             <h3>Goal Breakdown</h3>
@@ -335,9 +322,8 @@ function SampleDetailPlayer() {
       <br></br>
 
       <div className="container">
-      
         <div className="row">
-        <div className="col-sm-4">
+          <div className="col-sm-4">
             <h3>Total Passes and Pass Attempts</h3>
             <Pie
               data={PassPieData}
@@ -352,13 +338,8 @@ function SampleDetailPlayer() {
                   position: "right",
                 },
               }}
-         
-
-
             />
           </div>
-
-          
 
           <div className="col-sm-4">
             <h3>Passes and Attempts Over Time</h3>
@@ -367,26 +348,18 @@ function SampleDetailPlayer() {
 
           <div className="col-sm-4">
             <h3>Passing Breakdown</h3>
-            
-            <ul>  
 
-            <GoalTrendConditionalCheck/>
+            <ul>
+              <GoalTrendConditionalCheck />
 
-                <br></br>
-            <PassTrendConditionalCheck/>
+              <br></br>
+              <PassTrendConditionalCheck />
 
-                <br></br>
-
-                
-
-
+              <br></br>
             </ul>
-
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 }

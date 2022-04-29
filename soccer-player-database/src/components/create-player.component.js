@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import axios from 'axios';
-
+import axios from "axios";
 
 export default class CreatePlayer extends Component {
+  //creating an initial state with fields to be populated
   constructor(props) {
     super(props);
 
@@ -18,7 +18,7 @@ export default class CreatePlayer extends Component {
       matches: [],
     };
 
-    //bindings
+    //bindings for change events
     this.onChangePlayerName = this.onChangePlayerName.bind(this);
     this.onChangePlayerTeam = this.onChangePlayerTeam.bind(this);
     this.onChangePlayerPosition = this.onChangePlayerPosition.bind(this);
@@ -28,7 +28,6 @@ export default class CreatePlayer extends Component {
   }
 
   //methods for updating the state properties
-
   onChangePlayerName(e) {
     this.setState({
       player_name: e.target.value,
@@ -65,23 +64,21 @@ export default class CreatePlayer extends Component {
     console.log(
       `Empty match array created of length: ${this.state.matches.length}`
     );
+    //Creating a newPlayer object out of the currently held in state variables
+    const newPlayer = {
+      player_name: this.state.player_name,
+      player_team: this.state.player_team,
+      player_position: this.state.player_position,
+      player_dob: this.state.player_dob,
+      matches: this.state.match,
+    };
 
-      const newPlayer = {
+    //using an axios post request to send a HTTP post request to the backend end point which is http://localhost:4000/players/add
 
-        player_name: this.state.player_name,
-        player_team: this.state.player_team,
-        player_position: this.state.player_position,
-        player_dob: this.state.player_dob,
-        matches: this.state.match
-
-      }
-
-
-//using an axios post request to send a HTTP post request to the backend end point which is http://localhost:4000/players/add
-
-axios.post('http://localhost:4000/players/add', newPlayer)
-            .then(res => console.log(res.data));
-
+    axios
+      .post("http://localhost:4000/players/add", newPlayer)
+      .then((res) => console.log(res.data));
+    //clearing the state again
     this.setState({
       player_name: "",
 
@@ -93,18 +90,17 @@ axios.post('http://localhost:4000/players/add', newPlayer)
 
       matches: [],
     });
-
-    alert("New Player Created!: " +  newPlayer.player_name)
-  
+    //alerting the user
+    alert("New Player Created!: " + newPlayer.player_name);
   }
-
+  //What is shown to the user - a form for entering player details
   render() {
     return (
       <div style={{ marginTop: 10 }}>
         <h3>Create New Player</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Player Name: </label> 
+            <label>Player Name: </label>
             <input
               type="text"
               className="form-control"

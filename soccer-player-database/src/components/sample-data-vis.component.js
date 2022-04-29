@@ -307,9 +307,7 @@ function PassConditionalCheck() {
     );
 }
 
-//Trends for linear graphs over time
-
-//GoalTrendConditionalCheck
+//Functions for Trending Analysis, extracted from arrays 
 
 function GoalTrendsCheck() {
   var goalsPositiveTrend = 0;

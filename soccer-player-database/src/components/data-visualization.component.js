@@ -329,9 +329,7 @@ function PassConditionalCheck() {
     );
 }
 
-//Trends for linear graphs over time
-
-//GoalTrendConditionalCheck
+//Functions for Trending Analysis, extracted from arrays 
 
 function GoalTrendsCheck() {
   var goalsPositiveTrend = 0;
@@ -441,7 +439,7 @@ function PassesTrendsCheck() {
   } else
     return (
       <li>
-        <h4>This player is not improving over time</h4>
+        <h4>This player is not making more or less sucessful passes over time.</h4>
       </li>
     );
 }
@@ -671,7 +669,7 @@ function PerMatchGoalAttemptConditional() {
   } else return <li>This is the average performance.</li>;
 }
 
-
+//Encompassing Component
 function PassingAverageConditionalCheck() {
   if (
     Math.floor(passTotal / obj.matches.length) > overallPassAverage

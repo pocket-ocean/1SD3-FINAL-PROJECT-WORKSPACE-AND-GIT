@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { withRouter } from "react-router";
 
-
-//Gets the url id for the get method, slicing "/edit/" out of the result
+//Gets the url id for the HTTP GET method, slicing "/edit/" out of the resulting string
 let idToBeSliced = window.location.pathname;
 let id = idToBeSliced.substring(10);
 console.log(idToBeSliced);
@@ -13,7 +12,7 @@ export default class AddMatch extends Component {
   constructor(props) {
     super(props);
 
-    //bindings
+    //bindings for onchange events
 
     this.onChangeGoals = this.onChangeGoals.bind(this);
     this.onChangeGoalAttempts = this.onChangeGoalAttempts.bind(this);
@@ -43,15 +42,15 @@ export default class AddMatch extends Component {
       "Checking current state:" +
         JSON.stringify(this.state) +
         " this has an array of length " +
-        this.state.matches.length 
+        this.state.matches.length
     );
-
   }
   componentDidMount() {
-    //console.log("url id" +  id );
+    //GET method that uses the id grabbed using window.location.pathname
     axios
       .get("http://localhost:4000/players/" + id)
 
+      //the reponse data is used to update the state variables
       .then((response) => {
         this.setState({
           player_name: response.data.player_name,
@@ -67,9 +66,6 @@ export default class AddMatch extends Component {
         console.log(error);
       });
   }
-
-  
-
 
   //methods for updating the state properties
   onChangeGoals(e) {
@@ -96,6 +92,7 @@ export default class AddMatch extends Component {
     });
   }
 
+  //When the submit button is pressed, this happens
   onSubmit(e) {
     e.preventDefault();
 
@@ -104,83 +101,72 @@ export default class AddMatch extends Component {
     console.log("Passes" + this.state.passes);
     console.log("Pass Attempts" + this.state.passAttempts);
 
-    
-    if(this.state.goals <= this.state.goalAttempts && this.state.passes <= this.state.passAttempts){
     //input validation on goal sumission
+    if (
+      this.state.goals <= this.state.goalAttempts &&
+      this.state.passes <= this.state.passAttempts
+    ) {
+      //creating an object with the state data
+      const obj = {
+        player_name: this.state.player_name,
+        player_team: this.state.player_team,
+        player_dob: this.state.player_dob,
+        player_position: this.state.player_position,
+        matches: this.state.matches,
+      };
 
-    const obj = {
-      player_name: this.state.player_name,
-      player_team: this.state.player_team,
-      player_dob: this.state.player_dob,
-      player_position: this.state.player_position,
-      matches: this.state.matches,
-    };
+      console.log("Stringify checking the object:" + JSON.stringify(obj));
+      //creating a match object with the state data
+      const match = {
+        goals: this.state.goals,
+        goalAttempts: this.state.goalAttempts,
+        passes: this.state.passes,
+        passAttempts: this.state.passAttempts,
+      };
 
-    console.log("Stringify checking the object:" + JSON.stringify(obj));
+      //Adding adding this match to obj'smatches array
+      obj.matches.push(match);
+      console.log(obj);
 
-    const match = {   
-      goals: this.state.goals,
-      goalAttempts: this.state.goalAttempts,
-      passes: this.state.passes,
-      passAttempts: this.state.passAttempts,
-    };
-
-    //Adding match to matches array
-    obj.matches.push(match);
-    console.log(obj);
-
-    axios
-      .post("http://localhost:4000/players/update/" + id, obj)
-      .then((res) => console.log(res.data));
+      //posting it with axios
+      axios
+        .post("http://localhost:4000/players/update/" + id, obj)
+        .then((res) => console.log(res.data));
+      //Resetting the initial state
       this.state = {
         player_name: "",
-  
+
         player_team: "",
-  
+
         player_dob: "",
-  
+
         player_position: "",
-  
+
         matches: [],
-  
+
         goals: "",
         goalAttempts: "",
         passes: "",
         passAttempts: "",
       };
-  
-    alert("Match added to: " + obj.player_name)
+      //alerting the user
+      alert("Match added to: " + obj.player_name);
 
-    this.props.history.push("/");
-
+      this.props.history.push("/");
+    } else
+      alert(
+        "Note! Goals and Passes must be less than or equal to their respective attempt values!"
+      );
   }
-
-  else alert ("Note! Goals and Passes must be less than or equal to their respective attempt values!")
-  this.state = {
-    player_name: "",
-
-    player_team: "",
-
-    player_dob: "",
-
-    player_position: "",
-
-    matches: [],
-
-    goals: "",
-    goalAttempts: "",
-    passes: "",
-    passAttempts: "",
-  };
-
-  
-}
+  //What the user sees, shows them a form and a submit button
   render() {
-    
     return (
       <div style={{ marginTop: 10 }}>
         <h3>Add a match to {this.state.player_name}: </h3>
-        <p>Please note that goal and passes cannot be greater than their respective attempt values, that breaks the data visualization!</p>
+        <p>
+          Please note that goal and passes cannot be greater than their
+          respective attempt values, that breaks the data visualization!
+        </p>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Match Goals: </label>

@@ -101,7 +101,7 @@ export default class EditPlayer extends Component {
         " this player has an array of " +
         obj.matches.length
     );
-
+console.log("Player- " + obj.player_name + " - created!")
     axios
       .post("http://localhost:4000/players/update/" + id, obj)
       .then((res) => console.log(res.data));
