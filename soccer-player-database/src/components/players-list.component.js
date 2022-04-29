@@ -6,9 +6,9 @@ import axios from 'axios';
 const Player = props => (
   <tr>
       <td>{props.player.player_name}</td>
-      <td>{props.player.player_position}</td>
+      <td className="d-none d-sm-table-cell">{props.player.player_position}</td>
       <td>{props.player.player_team}</td>
-      <td>{props.player.matches.length}</td>
+      <td className="d-none d-sm-table-cell" >{props.player.matches.length}</td>
       <td>
           <Link to={"/edit/"+props.player._id}>Edit</Link>
       </td>
@@ -57,11 +57,11 @@ export default class PlayersList extends Component {
                   <thead>
                       <tr>
                           <th>Name</th>
-                          <th>Position</th>
-                          <th>Team</th>
-                          <th>No of Matches Played</th>
+                          <th className="d-none d-sm-table-cell">Position</th>
+                          <th >Team</th>
+                          <th className="d-none d-sm-table-cell">No of Matches Played</th>
                           <th>Edit Player Info</th>
-                          <th>Add Matches</th>
+                          <th>Add Match</th>
                           <th>View Player Data Visualization</th>
                       </tr>
                   </thead>
