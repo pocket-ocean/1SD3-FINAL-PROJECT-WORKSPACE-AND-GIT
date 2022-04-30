@@ -102,10 +102,10 @@ export default class AddMatch extends Component {
     console.log("Pass Attempts" + this.state.passAttempts);
 
     //input validation on goal sumission
-    if (
-      this.state.goals <= this.state.goalAttempts &&
-      this.state.passes <= this.state.passAttempts
-    ) {
+   //if (
+      // this.state.goals <= this.state.goalAttempts //&&
+      // // this.state.passes <= this.state.passAttempts)
+      {
       //creating an object with the state data
       const obj = {
         player_name: this.state.player_name,
@@ -153,11 +153,11 @@ export default class AddMatch extends Component {
       alert("Match added to: " + obj.player_name);
 
       this.props.history.push("/");
-    } else
-      alert(
-        "Note! Goals and Passes must be less than or equal to their respective attempt values!"
-      );
-  }
+   // } else
+      //alert(
+       // "Note! Goals and Passes must be less than or equal to their respective attempt values!"
+     // );
+  }}
   //What the user sees, shows them a form and a submit button
   render() {
     return (
